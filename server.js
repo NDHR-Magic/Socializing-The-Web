@@ -4,7 +4,7 @@ const session = require("express-session");
 const sequelize = require("./config/connection.js");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const helpers = require("./utils/helpers");
-//const controllers = require("./controllers");
+const controllers = require("./controllers");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -25,11 +25,11 @@ const sess = {
 
 app.use(session(sess));
 
-// Express middlewar
+// Express middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//app.use(controllers);
+app.use(controllers);
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Listening on the coolest PORT ${PORT}`));
