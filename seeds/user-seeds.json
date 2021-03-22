@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "first_name": "Nathan",
+        "last_name": "Peek",
+        "email": "nmp14fsu@gmail.com",
+        "password": "testing"
+    },
+    {
+        "id": 2,
+        "first_name": "Person",
+        "last_name": "Two",
+        "email": "person@gmail.com",
+        "password": "testing"
+    }
+]

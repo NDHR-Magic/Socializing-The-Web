@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Boulevard Of Broken Dreams",
+        "artist": "Green Day",
+        "playlist_id": 1
+    },
+    {
+        "id": 2,
+        "name": "All The Things She Said",
+        "artist": "t.A.T.u.",
+        "playlist_id": 1
+    },
+    {
+        "id": 3,
+        "name": "Numb",
+        "artist": "Linkin Park",
+        "playlist_id": 2
+    },
+    {
+        "id": 4,
+        "name": "In The End",
+        "artist": "Linkin Park",
+        "playlist_id": 2
+    }
+]
