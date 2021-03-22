@@ -1,43 +1,40 @@
-const {Model,DataTypes} = require("sequelize");
+const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Playlist extends Model {}
+class Playlist extends Model { }
 
 
 Playlist.init(
     {
-        id:{
+        id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
 
         },
-
-        song_id:{
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [4, 50]
+            }
+        },
+        user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            references:{
-                model:"song",
-                key:"id"
-            }
-
-        },
-        user_id:{
-            type: DataTypes.INTEGER,
-            allowNull:false,
-            references:{
-                model:"user",
-                key:"id"
+            references: {
+                model: "user",
+                key: "id"
             }
         },
     },
     {
         sequelize,
-        timestamps:false,
-        freezeTableName:true,
-        underscored:true,
-        modelName:"playlist"
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: "playlist"
     }
 )
 module.exports = Playlist
