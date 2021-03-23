@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "name": "Lit",
+        "color": "red"
+    },
+    {
+        "id": 2,
+        "name": "Calm",
+        "color": "blue"
+    },
+    {
+        "id": 3,
+        "name": "Relaxing",
+        "color": "blue"
+    },
+    {
+        "id": 4,
+        "name": "Intense",
+        "color": "crimson"
+    },
+    {
+        "id": 5,
+        "name": "Emotional",
+        "color": "pink"
+    }
+]
