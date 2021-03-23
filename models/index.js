@@ -1,6 +1,8 @@
 const User = require("./Users");
 const Song = require("./Songs");
 const Playlist = require("./playlist");
+const Tag = require("./Tags");
+const SongTag = require("./Song-tags");
 
 Playlist.hasMany(Song, {
     foreignKey: "playlist_id"
@@ -18,4 +20,7 @@ Playlist.belongsTo(User, {
     foreignKey: "user_id"
 });
 
-module.exports = { User, Song, Playlist };
+Song.belongsToMany(Tag, { through: SongTag, foreignKey: "song_id" });
+Tag.belongsToMany(Song, { through: SongTag, foreignKey: "tag_id" });
+
+module.exports = { User, Song, Playlist, Tag, SongTag };
