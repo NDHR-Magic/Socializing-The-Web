@@ -9,7 +9,7 @@ const controllers = require("./controllers");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const hbs = exphs.create({});
+const hbs = exphs.create({ helpers });
 
 const sess = {
     secret: "Not 100% sure how to use secrets, secret",
