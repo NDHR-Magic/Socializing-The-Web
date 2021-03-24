@@ -67,12 +67,18 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
+            {{#if loggedIn}}
+            <a class="button is-success has-text-black">
+              <strong>Logout</strong>
+            </a>
+            {{else}}
             <a class="button is-success has-text-black">
               <strong>Sign up</strong>
             </a>
             <a class="button is-link">
               Log in
             </a>
+            {{/if}}
           </div>
         </div>
       </div>
@@ -80,6 +86,9 @@
   </nav>
   {{{body}}}
 
+  {{#if loggedIn}}
+  <script src="/Assets/JS/logout.js"></script>
+  {{/if}}
   <script src="/JS/script.js"></script>
 </body>
 
