@@ -3,11 +3,6 @@ body, html {
     color: white;
 }
 
-.custom-flex {
-    display: flex;
-    justify-content: center;
-}
-
 .options-wrapper {
     background: #555;
     margin-right: 20px;
