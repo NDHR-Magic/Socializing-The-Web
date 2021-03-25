@@ -5,21 +5,28 @@ const { User, Song, Tag, Notes } = require("../../models");
 router.get("/", (req, res) => {
     res.render("home", {
         loggedIn: req.session.loggedIn
-    })
+    });
 });
 
 router.get("/login", (req, res) => {
     res.render("login", {
         loggedIn: req.session.loggedIn,
         user_id: req.session.user_id
-    })
+    });
 });
 
 router.get("/signup", (req, res) => {
     res.render("signup", {
         loggedIn: req.session.loggedIn,
         user_id: req.session.user_id
-    })
+    });
+});
+
+router.get("/noteForm", (req, res) => {
+    res.render("noteForm", {
+        loggedIn: req.session.loggedIn,
+        user_id: req.session.user_id
+    });
 });
 
 router.get("/member", async (req, res) => {
@@ -38,10 +45,10 @@ router.get("/member", async (req, res) => {
             userFriendNum,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id
-        })
+        });
     } catch (e) {
         res.status(500).json(e);
     }
-})
+});
 
 module.exports = router;
