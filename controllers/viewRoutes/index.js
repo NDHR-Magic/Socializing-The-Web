@@ -29,6 +29,13 @@ router.get("/noteForm", (req, res) => {
     });
 });
 
+router.get("/playlist", (req, res) => {
+    res.render("playlist", {
+        loggedIn: req.session.loggedIn,
+        user_id: req.session.user_id
+    });
+});
+
 router.get("/member", async (req, res) => {
     try {
         const userData = await User.findByPk(1);
