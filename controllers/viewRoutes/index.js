@@ -60,8 +60,6 @@ router.get("/friends", async (req, res) => {
 
         const friends = userFriends.map(friend => friend.get({ plain: true }));
 
-        console.log(friends);
-
         res.render("friendsList", {
             friends,
             loggedIn: req.session.loggedIn,

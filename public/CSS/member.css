@@ -14,7 +14,7 @@ body, html {
     height: 100%;
 }
 
-.friend-note-wrapper {
+.bg-555 {
     background: #555;
 }
 
@@ -30,6 +30,10 @@ body, html {
 
 .options-button {
     width: 80%;
+}
+
+.friends {
+    min-height: 700px;
 }
 
 @media only screen and (max-width: 768px) {
