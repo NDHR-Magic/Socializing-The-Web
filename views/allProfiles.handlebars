@@ -1,10 +1,28 @@
-<div class="has-text-centered">
-    <h1 class="is-size-1 my-3">Welcome to {{otherUser.username}}'s page</h1>
+{{#section 'head'}}
+<!-- stuff that goes in head...example: -->
+<link href="/CSS/allProfiles.css" rel="stylesheet">
+{{/section}}
 
+<header class="mb-3 bg-green custom-flex align-items container.is-fullhd">
+    <div class="columns is-mobile">
+        <div class="column is-one-quarter align-items">
+            <img src="https://via.placeholder.com/150" alt="placeholder">
+        </div>
+        <div class="column is-two-thirds align-items">
+            <h1 class="is-size-2 py-3 custom-media-h1">Welcome to {{otherUser.username}}'s page</h1>
+        </div>
+    </div>
+</header>
+
+<div class="has-text-centered">
+
+    {{#if sameUser}}
+    {{else}}
     {{#if areFriends}}
     <p>You are friends with this user!</p>
     {{else}}
     <p>Add friend (add button later)</p>
+    {{/if}}
     {{/if}}
 
     <p>{{otherUser.username}} has {{otherUserFriendNum}} friends!</p>
