@@ -1,3 +1,8 @@
 .bg-green {
     background: rgb(0, 255, 136);
 }
+
+.custom-flex {
+    display: flex;
+    justify-content: center;
+}
