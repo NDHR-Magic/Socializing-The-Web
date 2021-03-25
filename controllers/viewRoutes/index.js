@@ -51,4 +51,25 @@ router.get("/member", async (req, res) => {
     }
 });
 
+router.get("/friends", async (req, res) => {
+    try {
+        // change to req.session.user_id after login is finished
+        const user = await User.findByPk(1);
+
+        const userFriends = await user.getFriend();
+
+        const friends = userFriends.map(friend => friend.get({ plain: true }));
+
+        console.log(friends);
+
+        res.render("friendsList", {
+            friends,
+            loggedIn: req.session.loggedIn,
+            user_id: req.session.user_id
+        })
+    } catch (e) {
+        res.status(500).json(e);
+    }
+})
+
 module.exports = router;
