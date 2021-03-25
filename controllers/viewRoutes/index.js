@@ -82,15 +82,24 @@ router.get("/profile/:id", async (req, res) => {
 
         //check if user and otherUser are friends.
         const areFriends = await userInfo.hasFriend(otherUserInfo);
+
         // Get number of friends for otherUser
         const otherUserFriendNum = await otherUserInfo.countFriend();
 
+        const user = userInfo.get({ plain: true });
         const otherUser = otherUserInfo.get({ plain: true });
+
+        // Check if this page beglongs to the user
+        let sameUser = false;
+        if (user.username === otherUser.username) {
+            sameUser = true;
+        }
 
         res.render("allProfiles", {
             otherUser,
             areFriends,
             otherUserFriendNum,
+            sameUser,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id
         });
