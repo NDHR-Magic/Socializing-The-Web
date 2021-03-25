@@ -1,5 +1,5 @@
 body, html {
-    background: #666;
+    background: #111;
     color: white;
 }
 
@@ -8,9 +8,14 @@ body, html {
     justify-content: center;
 }
 
+.options-wrapper {
+    background: #555;
+    margin-right: 20px;
+    height: 100%;
+}
+
 .friend-note-wrapper {
     background: #555;
-    width: 80%;
 }
 
 .line {
@@ -21,4 +26,19 @@ body, html {
 
 .note-container {
     min-height: 700px;
+}
+
+.options-button {
+    width: 80%;
+}
+
+@media only screen and (max-width: 768px) {
+    .options-wrapper {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    .friend-note-wrapper {
+        margin: 10px 30px;
+    }
 }

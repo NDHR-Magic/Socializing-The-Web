@@ -7,19 +7,53 @@
     <h1 class="has-text-centered is-size-1 mt-3 mb-5">Welcome {{user.username}}</h1>
 </header>
 
-<main class="container custom-flex">
-    <div class="friend-note-wrapper">
-        <h2 class="has-text-centered is-size-3 mb-2">Recent Notes From Friends</h2>
+<main class="container.is-fullhd">
+    <div class="columns">
+        <div class="column is-one-quarter">
+            <div class="options-wrapper pb-3">
+                <h2 class="has-text-centered is-size-3 mb-2">User Options</h2>
+                <div class="line mb-3"></div>
 
-        <div class="line mb-3"></div>
+                <div class="custom-flex mb-3">
+                    <a id="createNote" href="/noteForm" class="button options-button">Create Note</a>
+                </div>
 
-        <div class="note-container">
+                <div class="custom-flex mb-3">
+                    <button id="findUsers" class="button options-button">Search For Users</button>
+                </div>
 
-            {{#if userFriendNum}}
-            <p class="has-text-centered">Placeholder</p>
-            {{else}}
-            <p class="has-text-centered">You don't have any friends yet!</p>
-            {{/if}}
+                <div class="custom-flex mb-3">
+                    <button id="checkNotes" class="button options-button">Check My Notes</button>
+                </div>
+
+                <div class="custom-flex mb-3">
+                    <button id="findSongs" class="button options-button">Find Songs</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="column is-two-thirds">
+            <div class="friend-note-wrapper">
+                <h2 class="has-text-centered is-size-3 mb-2">Recent Notes From Friends</h2>
+
+                <div class="line mb-3"></div>
+
+                <div class="note-container">
+
+                    <div class="custom-flex">
+                        <audio controls>
+                            <source src="/Songs/Test/Guilty Crown - βίος Bios copy.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element
+                        </audio>
+                    </div>
+
+                    {{#if userFriendNum}}
+                    <p class="has-text-centered">Placeholder</p>
+                    {{else}}
+                    <p class="has-text-centered">You don't have any friends yet!</p>
+                    {{/if}}
+                </div>
+            </div>
         </div>
     </div>
 </main>
