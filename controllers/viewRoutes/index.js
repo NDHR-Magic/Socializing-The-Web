@@ -38,7 +38,7 @@ router.get("/playlist", (req, res) => {
 
 router.get("/member", async (req, res) => {
     try {
-        const userData = await User.findByPk(1);
+        const userData = await User.findByPk(req.session.user_id);
         // Stuff for friends notes later.
 
         const userFriendNum = await userData.countFriend();
@@ -61,7 +61,7 @@ router.get("/member", async (req, res) => {
 router.get("/friends", async (req, res) => {
     try {
         // change to req.session.user_id after login is finished
-        const user = await User.findByPk(1);
+        const user = await User.findByPk(req.session.user_id);
 
         const userFriends = await user.getFriend();
 
@@ -80,7 +80,7 @@ router.get("/friends", async (req, res) => {
 // Get user profiles (not for loggedIn user's own profile but a generic page for anyones that you search).
 router.get("/profile/:id", async (req, res) => {
     try {
-        const userInfo = await User.findByPk(1);
+        const userInfo = await User.findByPk(req.session.user_id);
 
         const otherUserInfo = await User.findOne({
             where: { id: req.params.id },
