@@ -9,6 +9,6 @@ router.use("/songs", songRoutes);
 router.use("/users", userRoutes);
 router.use("/notes", noteRoutes);
 router.use("/playlist", playlistRoutes);
-router.use("./friends", friendRoutes);
+router.use("/friends", friendRoutes);
 
 module.exports = router;
