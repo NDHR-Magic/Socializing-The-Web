@@ -24,14 +24,14 @@
         "id": 4,
         "first_name": "Hader",
         "last_name": "Too cool",
-        "email": "test@gmail.com",
+        "email": "test2@gmail.com",
         "password": "testing"
     },
     {
         "id": 5,
         "first_name": "David",
         "last_name": "Manuel",
-        "email": "person@gmail.com",
+        "email": "test3@gmail.com",
         "password": "testing"
     }
 ]
