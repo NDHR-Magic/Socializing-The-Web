@@ -33,41 +33,48 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
+        {{!-- Have home lead to member page if logged in otherwise main home page --}}
+        {{#if loggedIn}}
+        <a class="navbar-item" href='/member'>
+          Home
+        </a>
+        {{else}}
         <a class="navbar-item" href='/'>
           Home
         </a>
+        {{/if}}
 
         <a class="navbar-item">
           Tags
         </a>
 
-        <div class="navbar-item has-dropdown is-hoverable ">
-          <a class="navbar-link">
-            Profile
-          </a>
-
-          <div class="navbar-dropdown">
-            <a class="navbar-item">
-              Settings
-            </a>
-            <a class="navbar-item">
-              Playlists
-            </a>
-            <a class="navbar-item">
-              Songs
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item">
-              Report an issue
-            </a>
-          </div>
-        </div>
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
             {{#if loggedIn}}
+            <div class="navbar-item has-dropdown is-hoverable mr-3 pb-2">
+              <a class="navbar-link">
+                Profile
+              </a>
+
+              <div class="navbar-dropdown">
+                <a class="navbar-item">
+                  Settings
+                </a>
+                <a class="navbar-item">
+                  Playlists
+                </a>
+                <a class="navbar-item">
+                  Songs
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item">
+                  Report an issue
+                </a>
+              </div>
+            </div>
             <a class="button is-success has-text-black">
               <strong>Logout</strong>
             </a>
