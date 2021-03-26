@@ -7,8 +7,10 @@ router.get("/", async (req, res) => {
         const user2 = await User.findByPk(2);
         const user3 = await User.findByPk(3);
         const user4 = await User.findByPk(4);
+        const user5 = await User.findByPk(5);
 
         await user.addFriend([user2, user4]);
+        await user3.addFriend([user5, user2]);
 
         const userFriends = await user.getFriend();
 
