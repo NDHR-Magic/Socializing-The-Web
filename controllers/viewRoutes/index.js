@@ -1,7 +1,19 @@
 const router = require("express").Router();
+const { setUserById } = require("../../middlewares");
 const { User, Song, Tag, Notes } = require("../../models");
 
 // Get home page
+router.param("userId", async (req, res, next, id) => {
+    const userData = await User.findByPk(id);
+    req.user = userData;
+    next();
+});
+
+router.get("/user/:userId", (req, res) => {
+    console.log("Then this function will be called\n");
+    res.end();
+});
+
 router.get("/", (req, res) => {
     res.render("home", {
         loggedIn: req.session.loggedIn
@@ -45,8 +57,6 @@ router.get("/member", async (req, res) => {
 
         const user = await userData.get({ plain: true });
 
-        console.log(userFriendNum);
-
         res.render("memberHome", {
             user,
             userFriendNum,
@@ -78,14 +88,13 @@ router.get("/friends", async (req, res) => {
 });
 
 // Get user profiles (not for loggedIn user's own profile but a generic page for anyones that you search).
-router.get("/profile/:id", async (req, res) => {
+router.get("/profile/:userId", async (req, res) => {
     try {
         const userInfo = await User.findByPk(req.session.user_id);
 
-        const otherUserInfo = await User.findOne({
-            where: { id: req.params.id },
-            attributes: { exclude: ['password', 'email', 'last_name'] }
-        });
+        const otherUserInfo = req.user;
+
+        console.log(otherUserInfo)
 
         //check if user and otherUser are friends.
         const areFriends = await userInfo.hasFriend(otherUserInfo);
