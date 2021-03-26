@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-const loginButton = $('#login-button')
+const loginButton = $('#loginButton')
 
 loginButton.on('click', async function(){
 
