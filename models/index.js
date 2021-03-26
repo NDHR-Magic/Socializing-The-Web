@@ -5,7 +5,7 @@ const Tag = require("./Tags");
 const SongTag = require("./Song-tags");
 const Notes = require("./Notes");
 const Friend = require("./Friends");
-const Notetag = require("./NoteTags");
+const NoteTag = require("./NoteTags");
 
 Playlist.hasMany(Song, {
     foreignKey: "playlist_id"
