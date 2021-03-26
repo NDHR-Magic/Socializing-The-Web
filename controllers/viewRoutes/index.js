@@ -2,18 +2,13 @@ const router = require("express").Router();
 const { setUserById } = require("../../middlewares");
 const { User, Song, Tag, Notes } = require("../../models");
 
-// Get home page
 router.param("userId", async (req, res, next, id) => {
     const userData = await User.findByPk(id);
     req.user = userData;
     next();
 });
 
-router.get("/user/:userId", (req, res) => {
-    console.log("Then this function will be called\n");
-    res.end();
-});
-
+// Get home page
 router.get("/", (req, res) => {
     res.render("home", {
         loggedIn: req.session.loggedIn
