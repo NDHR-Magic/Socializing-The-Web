@@ -9,7 +9,7 @@
         "id": 2,
         "name": "All The Things She Said",
         "artist": "t.A.T.u.",
-        "file_path": "/Songs/t.A.T.u./All_The_Things_She_Said.mp3"
+        "file_path": "/Songs/t_A_T_u/All_The_Things_She_Said.mp3"
     },
     {
         "id": 3,
@@ -87,6 +87,6 @@
         "id": 15,
         "name": "Pa' Que Enamore",
         "artist": "Telmary Diaz & William Vivanco",
-        "file_path": "/Songs/Telmary_Diaz_&_William_Vivanco/Pa'_Que_Enamore.mp3"
+        "file_path": "/Songs/Telmary_Diaz_and_William_Vivanco/Pa'_Que_Enamore.mp3"
     }
 ]
