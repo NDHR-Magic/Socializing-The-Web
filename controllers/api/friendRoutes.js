@@ -33,11 +33,11 @@ router.post("/request/:userId", async (req, res) => {
 
         const check = await requestee.hasFriend(requester);
 
-        if (!check) {
+        if (!check && !(requester.username === requestee.username)) {
             requestee.addRequester(requester);
         }
 
-        res.status(200).json("Successfully added");
+        res.status(200).json("Successfully requested");
     } catch (e) {
         res.status(500).json(e);
     }
