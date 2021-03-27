@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Playlist, User } = require("../../models");
+const { Playlist, User, Song } = require("../../models");
 
 router.get("/", async (req, res) => {
     try {
@@ -30,5 +30,19 @@ router.post('/', async (req, res) => {
         res.status(400).json(err);
     }
 });
+
+router.post('/playlist-test', async (req, res) => {
+    try {
+        const playlist = await Playlist.findByPk(2);
+        const song = await Song.findByPk(3)
+
+        await playlist.addSong(song)
+        const playlistSongs = await playlist.getSongs();
+        res.json(playlistSongs)
+
+    } catch (e) {
+        res.status(500).json(e);
+    }
+})
 
 module.exports = router;
