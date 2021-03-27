@@ -170,10 +170,10 @@ router.get("/friendRequests", async (req, res) => {
 
         const userRequests = await userData.getRequesters();
 
-        const requests = userRequests.map(request => request.get({ plain: true }));
+        const friendRequests = userRequests.map(request => request.get({ plain: true }));
 
         res.render("friendRequests", {
-            requests,
+            friendRequests,
             requests: req.requests,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id
