@@ -10,26 +10,30 @@ const friendData = require("./friend-seeds.json");
 
 
 const seedDatabase = async () => {
-    await sequelize.sync({ force: true });
+    try {
+        await sequelize.sync({ force: false });
 
-    await User.bulkCreate(userData, {
-        individualHooks: true,
-        returning: true,
-    });
+        await User.bulkCreate(userData, {
+            individualHooks: true,
+            returning: true,
+        });
 
-    await Tag.bulkCreate(tagData);
+        await Tag.bulkCreate(tagData);
 
-    await Playlist.bulkCreate(playlistData);
+        await Playlist.bulkCreate(playlistData);
 
-    await Song.bulkCreate(songData);
+        await Song.bulkCreate(songData);
 
-    await SongTag.bulkCreate(songTagData);
+        await SongTag.bulkCreate(songTagData);
 
-    await Notes.bulkCreate(noteData);
+        await Notes.bulkCreate(noteData);
 
-    await Friend.bulkCreate(friendData);
+        await Friend.bulkCreate(friendData);
 
-    process.exit(0);
+        process.exit(0);
+    } catch (e) {
+        console.log(e);
+    }
 }
 
 seedDatabase();

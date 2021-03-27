@@ -2,21 +2,91 @@
     {
         "id": 1,
         "name": "Boulevard Of Broken Dreams",
-        "artist": "Green Day"
+        "artist": "Green Day",
+        "file_path": "/Songs/Green_Day/Boulevard_Of_Broken_Dreams.mp3"
     },
     {
         "id": 2,
         "name": "All The Things She Said",
-        "artist": "t.A.T.u."
+        "artist": "t.A.T.u.",
+        "file_path": "/Songs/t.A.T.u./All_The_Things_She_Said.mp3"
     },
     {
         "id": 3,
-        "name": "Numb",
-        "artist": "Linkin Park"
+        "name": "In My Remains",
+        "artist": "Linkin Park",
+        "file_path": "/Songs/Linkin_Park/In_My_Remains"
     },
     {
         "id": 4,
-        "name": "In The End",
-        "artist": "Linkin Park"
+        "name": "Miss You",
+        "artist": "Alabama Shakes",
+        "file_path": "/Songs/Alabama_Shakes/Miss_you.mp3"
+    },
+    {
+        "id": 5,
+        "name": "Sol",
+        "artist": "Alef",
+        "file_path": "/Songs/Alef/Sol.mp3"
+    },
+    {
+        "id": 6,
+        "name": "Monday Morning",
+        "artist": "Death Cab for Cutie",
+        "file_path": "/Songs/Death_Cab_for_Cutie/Monday_Morning.mp3"
+    },
+    {
+        "id": 7,
+        "name": "All Around Me",
+        "artist": "Flyleaf",
+        "file_path": "/Songs/Flyleaf/All_Around_Me.mp3"
+    },
+    {
+        "id": 8,
+        "name": "Bios",
+        "artist": "Guilty Crown",
+        "file_path": "/Songs/Guilty_Crown/Bios.mp3"
+    },
+    {
+        "id": 9,
+        "name": "Heavy California",
+        "artist": "Jungle",
+        "file_path": "/Songs/Jungle/Heavy_California.mp3"
+    },
+    {
+        "id": 10,
+        "name": "Breathing Underwater",
+        "artist": "METRIC",
+        "file_path": "/Songs/METRIC/Breathing_Underwater.mp3"
+    },
+    {
+        "id": 11,
+        "name": "Gimmie Sympathy",
+        "artist": "METRIC",
+        "file_path": "/Songs/METRIC/Gimmie_Sympathy.mp3"
+    },
+    {
+        "id": 12,
+        "name": "Now or Never Now",
+        "artist": "METRIC",
+        "file_path": "/Songs/METRIC/Now_or_Never_Now.mp3"
+    },
+    {
+        "id": 13,
+        "name": "Piggy",
+        "artist": "Nine Inch Nails",
+        "file_path": "/Songs/Nine_Inch_Nails/Piggy.mp3"
+    },
+    {
+        "id": 14,
+        "name": "Breathing Underwater",
+        "artist": "Spirited_Away",
+        "file_path": "/Songs/Spirited_Away/Always_With_Me.mp3"
+    },
+    {
+        "id": 15,
+        "name": "Pa' Que Enamore",
+        "artist": "Telmary Diaz & William Vivanco",
+        "file_path": "/Songs/Telmary_Diaz_&_William_Vivanco/Pa'_Que_Enamore.mp3"
     }
 ]
