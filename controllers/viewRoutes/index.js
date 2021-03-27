@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const { User, Song, Tag, Notes } = require("../../models");
+const { User, Song, Tag, Notes, Playlist } = require("../../models");
+const SongPlaylist = require("../../models/Song-playlist");
 
 // Get home page
 router.get("/", (req, res) => {
@@ -24,13 +25,6 @@ router.get("/signup", (req, res) => {
 
 router.get("/noteForm", (req, res) => {
     res.render("noteForm", {
-        loggedIn: req.session.loggedIn,
-        user_id: req.session.user_id
-    });
-});
-
-router.get("/playlist", (req, res) => {
-    res.render("playlist", {
         loggedIn: req.session.loggedIn,
         user_id: req.session.user_id
     });
@@ -114,5 +108,28 @@ router.get("/profile/:id", async (req, res) => {
         res.status(500).json(e);
     }
 });
+
+router.get("/playlists", async (req, res) => {
+    try {
+        const userData = await User.findOne({
+            where: {
+                id: req.session.user_id
+            },
+            include: {
+                model: Playlist
+            }
+        });
+        const user = userData.get({ plain: true });
+        console.log(user)
+        res.render("playlists", {
+            user,
+            loggedIn: req.session.loggedIn,
+            user_id: req.session.user_id
+        })
+    } catch (e) {
+        res.status(500).json(e);
+    }
+});
+
 
 module.exports = router;
