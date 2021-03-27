@@ -28,13 +28,16 @@ router.get("/", async (req, res) => {
 
 router.post("/request/:userId", async (req, res) => {
     try {
-        const requester = await User.findByPk(1);
+        const requester = await User.findByPk(3);
         const requestee = req.user;
 
-        console.log(requester);
-        console.log(requestee);
+        const check = await requestee.hasFriend(requester);
 
-        res.json("test");
+        if (!check) {
+            requestee.addRequester(requester);
+        }
+
+        res.status(200).json("Successfully added");
     } catch (e) {
         res.status(500).json(e);
     }

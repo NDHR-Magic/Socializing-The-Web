@@ -44,6 +44,8 @@ router.get("/member", async (req, res) => {
         // Stuff for friends notes later.
 
         const userFriendNum = await userData.countFriend();
+        const userRequests = await userData.getRequesters();
+        const numRequests = await userData.countRequesters();
 
         const user = await userData.get({ plain: true });
         const song = await songData.get({ plain: true });
@@ -52,6 +54,7 @@ router.get("/member", async (req, res) => {
             user,
             song,
             userFriendNum,
+            numRequests,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id
         });
