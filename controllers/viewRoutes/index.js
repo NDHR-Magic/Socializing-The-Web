@@ -33,16 +33,20 @@ router.get("/noteForm", (req, res) => {
 router.get("/member", async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id);
+        const songData = await Song.findByPk(8);
+
         // Stuff for friends notes later.
 
         const userFriendNum = await userData.countFriend();
 
         const user = await userData.get({ plain: true });
+        const song = await songData.get({ plain: true });
 
         console.log(userFriendNum);
 
         res.render("memberHome", {
             user,
+            song,
             userFriendNum,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id

@@ -23,7 +23,10 @@ Song.init(
             type: DataTypes.STRING,
             allowNull: true
         },
-
+        file_path: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
     },
     {
         sequelize,
