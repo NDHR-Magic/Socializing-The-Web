@@ -135,5 +135,28 @@ router.get("/playlists", async (req, res) => {
     }
 });
 
+// get user Notes(profile page) there will be a div and well slap only this persons notes, and since its our 
+// router.get("userProfile", async (req, res) => {
+//     try {
+//         const userData = await User.findOne({
+//             where: {
+//                 id: req.session.user_id
+//             },
+//             include: {
+//                 model: Playlist
+//             }
+//         });
+//         const user = userData.get({ plain: true });
+//         console.log(user)
+//         res.render("playlists", {
+//             user,
+//             loggedIn: req.session.loggedIn,
+//             user_id: req.session.user_id
+//         })
+//     } catch (e) {
+//         res.status(500).json(e);
+//     }
+// });
+
 
 module.exports = router;

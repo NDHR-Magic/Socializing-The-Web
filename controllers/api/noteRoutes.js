@@ -12,22 +12,14 @@ router.get("/", async (req, res) => {
 
     const notes = noteResults.map(note => note.get({ plain: true }))
     res.json(notes);
-})
-
-
+});
 
 router.post('/', async (req, res) => {
     try {
         const noteData = await Notes.create({
-            // id: req.body.id,
             title: req.body.title,
-            // artist: req.body.artist,
-            // album: req.body.album,
             description: req.body.description,
-            // playlist_id: req.body.playlist_id,
             user_id: req.session.user_id,
-            // song_id: req.body.song_id,
-            // tag_id: req.body.tag_id,
 
         });
         res.status(200).json(noteData)
@@ -41,15 +33,8 @@ router.put('/:id', async (req, res) => {
     try {
         const noteX = await Notes.update(
             {
-                id: req.body.id,
                 title: req.body.title,
-                artist: req.body.artist,
-                album: req.body.album,
                 description: req.bodydescription,
-                playlist_id: req.body.playlist_id,
-                user_id: req.body.user_id,
-                song_id: req.body.song_id,
-                tag_id: req.body.tag_id,
             },
             {
                 where: {
@@ -62,6 +47,23 @@ router.put('/:id', async (req, res) => {
         res.status().json(err);
     };
 });
+
+// route to delete Note
+
+router.delete("/:id", async (req, res) => {
+    try {
+        const noteDelete = await Notes.delete(
+            {
+                where: {
+                    id: req.params.id
+                },
+            });
+        res.status(200).json(noteDelete)
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 
 
 module.exports = router;
