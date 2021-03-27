@@ -52,7 +52,7 @@ router.put('/:id', async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
     try {
-        const noteDelete = await Notes.delete(
+        const noteDelete = await Notes.destroy(
             {
                 where: {
                     id: req.params.id
