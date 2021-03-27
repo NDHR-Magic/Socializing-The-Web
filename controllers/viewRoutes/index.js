@@ -2,6 +2,12 @@ const router = require("express").Router();
 const { User, Song, Tag, Notes, Playlist } = require("../../models");
 const SongPlaylist = require("../../models/Song-playlist");
 
+router.param("userId", async (req, res, next, id) => {
+    const userData = await User.findByPk(id);
+    req.user = userData;
+    next();
+});
+
 // Get home page
 router.get("/", (req, res) => {
     res.render("home", {
@@ -12,6 +18,7 @@ router.get("/", (req, res) => {
 router.get("/login", (req, res) => {
     res.render("login", {
         loggedIn: req.session.loggedIn,
+        requests: req.requests,
         user_id: req.session.user_id
     });
 });
@@ -19,6 +26,7 @@ router.get("/login", (req, res) => {
 router.get("/signup", (req, res) => {
     res.render("signup", {
         loggedIn: req.session.loggedIn,
+        requests: req.requests,
         user_id: req.session.user_id
     });
 });
@@ -26,6 +34,7 @@ router.get("/signup", (req, res) => {
 router.get("/noteForm", (req, res) => {
     res.render("noteForm", {
         loggedIn: req.session.loggedIn,
+        requests: req.requests,
         user_id: req.session.user_id
     });
 });
@@ -38,16 +47,17 @@ router.get("/member", async (req, res) => {
         // Stuff for friends notes later.
 
         const userFriendNum = await userData.countFriend();
+        const userRequests = await userData.getRequesters();
+        const numRequests = await userData.countRequesters();
 
         const user = await userData.get({ plain: true });
         const song = await songData.get({ plain: true });
-
-        console.log(userFriendNum);
 
         res.render("memberHome", {
             user,
             song,
             userFriendNum,
+            requests: req.requests,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id
         });
@@ -68,6 +78,7 @@ router.get("/friends", async (req, res) => {
         res.render("friendsList", {
             friends,
             loggedIn: req.session.loggedIn,
+            requests: req.requests,
             user_id: req.session.user_id
         })
     } catch (e) {
@@ -76,14 +87,13 @@ router.get("/friends", async (req, res) => {
 });
 
 // Get user profiles (not for loggedIn user's own profile but a generic page for anyones that you search).
-router.get("/profile/:id", async (req, res) => {
+router.get("/profile/:userId", async (req, res) => {
     try {
         const userInfo = await User.findByPk(req.session.user_id);
 
-        const otherUserInfo = await User.findOne({
-            where: { id: req.params.id },
-            attributes: { exclude: ['password', 'email', 'last_name'] }
-        });
+        const otherUserInfo = req.user;
+
+        console.log(otherUserInfo)
 
         //check if user and otherUser are friends.
         const areFriends = await userInfo.hasFriend(otherUserInfo);
@@ -105,6 +115,7 @@ router.get("/profile/:id", async (req, res) => {
             areFriends,
             otherUserFriendNum,
             sameUser,
+            requests: req.requests,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id
         });
@@ -127,6 +138,27 @@ router.get("/playlists", async (req, res) => {
         console.log(user)
         res.render("playlists", {
             user,
+            loggedIn: req.session.loggedIn,
+            requests: req.requests,
+            user_id: req.session.user_id
+        })
+    } catch (e) {
+        res.status(500).json(e);
+    }
+});
+
+router.get("/friendRequests", async (req, res) => {
+    try {
+        const userData = await User.findByPk(req.session.user_id);
+
+        const userRequests = await userData.getRequesters();
+        const countRequests = await userData.countRequesters();
+
+        const requests = userRequests.get({ plain: true });
+
+        res.render("friendRequests", {
+            requests,
+            requests: req.requests,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id
         })

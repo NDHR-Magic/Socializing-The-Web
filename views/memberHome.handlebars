@@ -3,6 +3,10 @@
 <link href="/CSS/member.css" rel="stylesheet">
 {{/section}}
 
+{{#section 'notification'}}
+Friend Requests: {{requests}}
+{{/section}}
+
 <header class="container">
     <h1 class="has-text-centered is-size-1 mt-3 mb-5">Welcome {{user.username}}</h1>
 </header>
@@ -65,3 +69,5 @@
         </div>
     </div>
 </main>
+
+<script src="/JS/notifications.js"></script>

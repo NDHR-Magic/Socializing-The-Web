@@ -56,6 +56,9 @@
         <div class="navbar-item">
           <div class="buttons">
             {{#if loggedIn}}
+            <a href="/friendRequests" class="button" id="notifications">
+              <strong id="notificationNumber">{{{_sections.notification}}}</strong>
+            </a>
             <div class="navbar-item has-dropdown is-hoverable mr-3 pb-2">
               <a class="navbar-link">
                 Profile
@@ -84,7 +87,7 @@
             <a class="button is-success has-text-black" href='/signup'>
               <strong>Sign up</strong>
             </a>
-            <a class="button is-link" href='/login'> 
+            <a class="button is-link" href='/login'>
               Log in
             </a>
             {{/if}}
