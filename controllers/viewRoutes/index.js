@@ -147,14 +147,30 @@ router.get("/playlists", async (req, res) => {
     }
 });
 
+router.get("/playlists/:id", async (req, res) => {
+    const playlistData = await Playlist.findByPk(req.params.id);
+
+    const songsData = await playlistData.getSongs();
+
+    const songs = songsData.map(song => song.get({ plain: true }));
+    const playlist = playlistData.get({ plain: true });
+
+    res.render("playlistID", {
+        playlist,
+        songs,
+        requests: req.requests,
+        loggedIn: req.session.loggedIn,
+        user_id: req.session.user_id
+    })
+})
+
 router.get("/friendRequests", async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id);
 
         const userRequests = await userData.getRequesters();
-        const countRequests = await userData.countRequesters();
 
-        const requests = userRequests.get({ plain: true });
+        const requests = userRequests.map(request => request.get({ plain: true }));
 
         res.render("friendRequests", {
             requests,
