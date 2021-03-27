@@ -1,6 +1,10 @@
 {{#section 'head'}}
 <!-- stuff that goes in head of only this page...example: -->
- <link href="/CSS/style.css" rel="stylesheet">
+<link href="/CSS/style.css" rel="stylesheet">
+{{/section}}
+
+{{#section 'notification'}}
+Friend Requests: {{requests}}
 {{/section}}
 
 
@@ -10,9 +14,9 @@
             <h1>#MOODS</h1>
         </div>
     </div>
-<div>
-  <input name="Note_Title" placeholder="enter your title">
-</div>
+    <div>
+        <input name="Note_Title" placeholder="enter your title">
+    </div>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Example textarea</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>

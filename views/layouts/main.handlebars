@@ -56,7 +56,7 @@
         <div class="navbar-item">
           <div class="buttons">
             {{#if loggedIn}}
-            <a class="button" id="notifications">
+            <a href="/friendRequests" class="button" id="notifications">
               <strong id="notificationNumber">{{{_sections.notification}}}</strong>
             </a>
             <div class="navbar-item has-dropdown is-hoverable mr-3 pb-2">
@@ -100,7 +100,6 @@
 
   {{#if loggedIn}}
   <script src="/JS/logout.js"></script>
-  <script src="/JS/notifications.js"></script>
   {{/if}}
   <script src="/JS/script.js"></script>
 </body>
