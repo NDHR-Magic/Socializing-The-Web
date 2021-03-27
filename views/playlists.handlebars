@@ -17,7 +17,7 @@ Friend Requests: {{requests}}
                 <ul class="myPlaylists">
                     {{#if user.playlists}}
                     {{#each user.playlists as |playlist|}}
-                    <li>{{playlist.name}}</li>
+                    <li><a href='{{playlist.id}}'>{{playlist.name}}</a></li>
                     {{/each}}
                     {{else}}
                     <li>You do not have any playlists yet!</li>
