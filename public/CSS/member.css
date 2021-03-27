@@ -13,12 +13,6 @@ body, html {
     background: #555;
 }
 
-.line {
-    width: 100%;
-    height: 5px;
-    background: teal;
-}
-
 .note-container {
     min-height: 700px;
 }
