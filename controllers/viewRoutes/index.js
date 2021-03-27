@@ -18,6 +18,7 @@ router.get("/", (req, res) => {
 router.get("/login", (req, res) => {
     res.render("login", {
         loggedIn: req.session.loggedIn,
+        requests: req.requests,
         user_id: req.session.user_id
     });
 });
@@ -25,6 +26,7 @@ router.get("/login", (req, res) => {
 router.get("/signup", (req, res) => {
     res.render("signup", {
         loggedIn: req.session.loggedIn,
+        requests: req.requests,
         user_id: req.session.user_id
     });
 });
@@ -32,6 +34,7 @@ router.get("/signup", (req, res) => {
 router.get("/noteForm", (req, res) => {
     res.render("noteForm", {
         loggedIn: req.session.loggedIn,
+        requests: req.requests,
         user_id: req.session.user_id
     });
 });
@@ -54,7 +57,7 @@ router.get("/member", async (req, res) => {
             user,
             song,
             userFriendNum,
-            numRequests,
+            requests: req.requests,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id
         });
@@ -75,6 +78,7 @@ router.get("/friends", async (req, res) => {
         res.render("friendsList", {
             friends,
             loggedIn: req.session.loggedIn,
+            requests: req.requests,
             user_id: req.session.user_id
         })
     } catch (e) {
@@ -111,6 +115,7 @@ router.get("/profile/:userId", async (req, res) => {
             areFriends,
             otherUserFriendNum,
             sameUser,
+            requests: req.requests,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id
         });
@@ -133,6 +138,27 @@ router.get("/playlists", async (req, res) => {
         console.log(user)
         res.render("playlists", {
             user,
+            loggedIn: req.session.loggedIn,
+            requests: req.requests,
+            user_id: req.session.user_id
+        })
+    } catch (e) {
+        res.status(500).json(e);
+    }
+});
+
+router.get("/friendRequests", async (req, res) => {
+    try {
+        const userData = await User.findByPk(req.session.user_id);
+
+        const userRequests = await userData.getRequesters();
+        const countRequests = await userData.countRequesters();
+
+        const requests = userRequests.get({ plain: true });
+
+        res.render("friendRequests", {
+            requests,
+            requests: req.requests,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id
         })
