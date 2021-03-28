@@ -42,7 +42,7 @@ router.post("/request/:userId", async (req, res) => {
         res.status(500).json(e);
     }
 });
-
+// Delete friend request
 router.delete("/request/:userId", async (req, res) => {
     try {
         const requester = req.user;
@@ -62,5 +62,26 @@ router.delete("/request/:userId", async (req, res) => {
         res.status(500).json(e);
     }
 });
+// Unfriend user
+router.delete("/friend/:userId", async (req, res) => {
+    try {
+        const currentUser = await User.findByPk(req.session.user_id);
+        const friendData = req.user;
+
+        // Check if actually friends
+        const checkFriend = await currentUser.hasFriend(friendData);
+
+        let friend;
+        if (checkFriend) {
+            currentUser.removeFriend(friendData);
+            friend = friendData.get({ plain: true });
+        }
+
+        res.status(200).json("Successfully removed " + friend.username + " from your friends list.");
+
+    } catch (e) {
+        res.status(500).json(e);
+    }
+})
 
 module.exports = router;
