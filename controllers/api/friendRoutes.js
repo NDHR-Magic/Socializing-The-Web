@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
 
 router.post("/request/:userId", async (req, res) => {
     try {
-        const requester = await User.findByPk(3);
+        const requester = await User.findByPk(5);
         const requestee = req.user;
 
         const check = await requestee.hasFriend(requester);
@@ -38,6 +38,26 @@ router.post("/request/:userId", async (req, res) => {
         }
 
         res.status(200).json("Successfully requested");
+    } catch (e) {
+        res.status(500).json(e);
+    }
+});
+
+router.delete("/request/:userId", async (req, res) => {
+    try {
+        const requester = req.user;
+        const requestee = await User.findByPk(req.session.user_id);
+
+        const checkRequest = await requestee.hasRequester(requester);
+
+        let requests;
+        if (checkRequest) {
+            requestee.removeRequester(requester);
+            requests = await requestee.getRequesters();
+        }
+
+        res.status(200).json({ requests, message: "Successfully declined friend request" });
+
     } catch (e) {
         res.status(500).json(e);
     }

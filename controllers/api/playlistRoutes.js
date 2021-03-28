@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { Playlist, User, Song } = require("../../models");
-const { route } = require("../viewRoutes");
 
 router.get("/", async (req, res) => {
     try {
@@ -11,7 +10,6 @@ router.get("/", async (req, res) => {
         });
 
         const playlists = playlistResults.map(playlist => playlist.get({ plain: true }));
-        res.json(playlists)
         console.log(playlists);
 
         res.status(200).json(playlists);
