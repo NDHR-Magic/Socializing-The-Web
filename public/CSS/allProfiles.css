@@ -1,5 +1,16 @@
+body, html {
+    background: #555;
+    color: white;
+    min-height: 100%;
+}
+
 header {
     height: 150px;
+    color: black;
+}
+
+.custom-border-right {
+    border-right: 1px solid #111;
 }
 
 .align-items {
@@ -25,5 +36,14 @@ img {
 @media only screen and (max-width: 450px) {
     .custom-media-h1 {
         font-size: 1.5em !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .mobile-center {
+        text-align: center;
+    }
+    .custom-border-right {
+        border-right: 0px;
     }
 }
