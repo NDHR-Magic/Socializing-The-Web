@@ -17,8 +17,8 @@ Friend Requests: {{requests}}
                         {{request.username}}
                     </div>
                     <div class="column is-one-third custom-flex">
-                        <button class="button is-primary mr-2">Accept</button>
-                        <button class="button is-danger">Reject</button>
+                        <button data-id={{request.id}} class="button is-primary mr-2 acceptRequest">Accept</button>
+                        <button data-id={{request.id}} class="button is-danger rejectRequest">Reject</button>
                     </div>
                 </div>
             </div>
@@ -29,3 +29,5 @@ Friend Requests: {{requests}}
         {{/if}}
     </div>
 </div>
+
+<script src="/JS/notifications.js"></script>
