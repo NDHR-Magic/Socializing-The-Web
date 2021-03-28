@@ -9,7 +9,7 @@ router.param("userId", async (req, res, next, id) => {
 
 router.post("/request/:userId", async (req, res) => {
     try {
-        const requester = await User.findByPk(5);
+        const requester = await User.findByPk(req.session.user_id);
         const requestee = req.user;
 
         // Check if already friends
