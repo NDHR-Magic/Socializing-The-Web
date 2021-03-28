@@ -37,11 +37,11 @@ Tag.belongsToMany(Notes, { through: NoteTag, foreignKey: "tag_id" });
 Song.belongsToMany(Tag, { through: SongTag, foreignKey: "song_id" });
 Tag.belongsToMany(Song, { through: SongTag, foreignKey: "tag_id" });
 
-User.belongsToMany(User, { through: Friend, as: "User", foreignKey: "user_id" });
-User.belongsToMany(User, { through: Friend, as: "Friend", foreignKey: "friend_id" });
+User.belongsToMany(User, { through: Friend, as: "User", foreignKey: "user_id", onDelete: "CASCADE" });
+User.belongsToMany(User, { through: Friend, as: "Friend", foreignKey: "friend_id", onDelete: "CASCADE" });
 
-User.belongsToMany(User, { as: 'Requestees', through: 'friendRequests', foreignKey: 'requesterId', onDelete: 'CASCADE' });
-User.belongsToMany(User, { as: 'Requesters', through: 'friendRequests', foreignKey: 'requesteeId', onDelete: 'CASCADE' });
+User.belongsToMany(User, { as: "Requestees", through: "friendRequests", foreignKey: 'requesterId', onDelete: 'CASCADE' });
+User.belongsToMany(User, { as: "Requesters", through: "friendRequests", foreignKey: 'requesteeId', onDelete: 'CASCADE' });
 
 Song.belongsToMany(Playlist, { through: SongPlaylist, foreignKey: "song_id" });
 Playlist.belongsToMany(Song, { through: SongPlaylist, foreignKey: "playlist_id" });
