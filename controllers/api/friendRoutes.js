@@ -7,6 +7,34 @@ router.param("userId", async (req, res, next, id) => {
     next();
 });
 
+// Accept friend request and add to friends list
+router.post("/addFriend/:userId", async (req, res) => {
+    try {
+        const requester = req.user;
+        const user = await User.findByPk(req.session.user_id);
+
+        // Check if already friends
+        const checkIfFriends = await user.hasFriend(requester);
+
+        if (checkIfFriends) {
+            res.status(406).json({ message: "You are already friends with this user. Cannot accept request" });
+            return;
+        }
+
+        // Make sure the request exists
+        const checkRequest = await user.hasRequester(requester);
+        if (checkRequest) {
+            await user.removeRequester(requester);
+            await user.addFriend(requester);
+        }
+
+        res.status(202).json("You have successfully accepted the request");
+    } catch (e) {
+        res.status(500).json(e);
+    }
+});
+
+// Create friend request
 router.post("/request/:userId", async (req, res) => {
     try {
         const requester = await User.findByPk(req.session.user_id);
