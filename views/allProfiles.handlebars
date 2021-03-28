@@ -37,11 +37,11 @@ Friend Requests: {{requests}}
                 {{!-- check if either you or this user has requested each other ass friends (and still pending) --}}
                 {{#if requested}}
                 <div class="custom-flex">
-                    <button class="button is-link">Added (Pending request)</button>
+                    <button class="button is-link" title="disabled button" disabled>Added (Pending request)</button>
                 </div>
                 {{else}}
                 <div class="custom-flex">
-                    <button class="button is-link">Add friend!</button>
+                    <button id="addFriend" data-id={{otherUser.id}} class="button is-link">Add friend!</button>
                 </div>
                 {{/if}}
                 {{/if}}
@@ -52,17 +52,10 @@ Friend Requests: {{requests}}
             <h2 class="has-text-centered is-size-3">Posts (TODO)</h2>
             <div class="line mb-2"></div>
 
-            <p class="px-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet iusto quibusdam laboriosam
-                ipsam
-                voluptas, maxime pariatur recusandae id in temporibus voluptatibus nihil sed! Aut consectetur alias
-                quisquam. Sequi quis nisi nemo dolores? Quas non earum ratione optio blanditiis libero cupiditate
-                consequatur molestias qui eligendi, possimus sunt nostrum corrupti necessitatibus, officia rerum
-                deleniti ipsum. Repudiandae, similique explicabo architecto consequuntur voluptatem quas amet qui
-                inventore dolor deserunt consequatur necessitatibus vitae mollitia iusto iure eius sed, optio placeat
-                pariatur aliquid? Dignissimos expedita aliquid omnis modi ipsum itaque ipsam vitae at suscipit dolore
-                minima, enim debitis earum voluptatibus, et ratione? Earum distinctio possimus rerum.</p>
+            <p class="px-2">Testing</p>
         </div>
     </div>
 </div>
 
 <script src="/JS/friends.js"></script>
+<script src="/JS/addFriend.js"></script>
