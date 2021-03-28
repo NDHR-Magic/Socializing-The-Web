@@ -31,10 +31,16 @@ router.post("/request/:userId", async (req, res) => {
         const requester = await User.findByPk(5);
         const requestee = req.user;
 
-        const check = await requestee.hasFriend(requester);
+        // Check if already friends
+        const checkFriend = await requestee.hasFriend(requester);
+        // Check if already requested
+        const checkRequested = await requestee.hasRequester(requester);
 
-        if (!check && !(requester.username === requestee.username)) {
+        if (!checkFriend && !(requester.username === requestee.username) && !checkRequested) {
             requestee.addRequester(requester);
+        } else {
+            res.status(412).json("Could not add user");
+            return;
         }
 
         res.status(200).json("Successfully requested");

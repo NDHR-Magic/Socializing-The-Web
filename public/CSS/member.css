@@ -21,6 +21,10 @@ body, html {
     width: 80%;
 }
 
+.friend {
+    cursor: pointer;
+}
+
 .friends {
     min-height: 700px;
 }
