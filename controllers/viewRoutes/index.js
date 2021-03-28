@@ -11,7 +11,8 @@ router.param("userId", async (req, res, next, id) => {
 // Get home page
 router.get("/", (req, res) => {
     res.render("home", {
-        loggedIn: req.session.loggedIn
+        loggedIn: req.session.loggedIn,
+        requests: req.requests
     });
 });
 
