@@ -24,17 +24,26 @@ Friend Requests: {{requests}}
         <div class="column is-one-quarter custom-border-right">
             <div class="ml-2 my-3 mobile-center">
                 <p class="mb-2">{{otherUser.username}} has {{otherUserFriendNum}} friends!</p>
+                {{!-- check if this is your profile --}}
                 {{#if sameUser}}
                 {{else}}
+                {{!-- check if you are friends --}}
                 {{#if areFriends}}
                 <p class="mb-2">You are friends with this user!</p>
                 <div class="custom-flex">
                     <button id="deleteFriend" data-id={{otherUser.id}} class="button is-danger">Unfriend</button>
                 </div>
                 {{else}}
+                {{!-- check if either you or this user has requested each other ass friends (and still pending) --}}
+                {{#if requested}}
                 <div class="custom-flex">
-                    <button class="button is-link">Add friend!</button>
+                    <button class="button is-link" title="disabled button" disabled>Added (Pending request)</button>
                 </div>
+                {{else}}
+                <div class="custom-flex">
+                    <button id="addFriend" data-id={{otherUser.id}} class="button is-link">Add friend!</button>
+                </div>
+                {{/if}}
                 {{/if}}
                 {{/if}}
             </div>
@@ -43,17 +52,10 @@ Friend Requests: {{requests}}
             <h2 class="has-text-centered is-size-3">Posts (TODO)</h2>
             <div class="line mb-2"></div>
 
-            <p class="px-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet iusto quibusdam laboriosam
-                ipsam
-                voluptas, maxime pariatur recusandae id in temporibus voluptatibus nihil sed! Aut consectetur alias
-                quisquam. Sequi quis nisi nemo dolores? Quas non earum ratione optio blanditiis libero cupiditate
-                consequatur molestias qui eligendi, possimus sunt nostrum corrupti necessitatibus, officia rerum
-                deleniti ipsum. Repudiandae, similique explicabo architecto consequuntur voluptatem quas amet qui
-                inventore dolor deserunt consequatur necessitatibus vitae mollitia iusto iure eius sed, optio placeat
-                pariatur aliquid? Dignissimos expedita aliquid omnis modi ipsum itaque ipsam vitae at suscipit dolore
-                minima, enim debitis earum voluptatibus, et ratione? Earum distinctio possimus rerum.</p>
+            <p class="px-2">Testing</p>
         </div>
     </div>
 </div>
 
 <script src="/JS/friends.js"></script>
+<script src="/JS/addFriend.js"></script>

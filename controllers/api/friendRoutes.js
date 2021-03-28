@@ -7,34 +7,21 @@ router.param("userId", async (req, res, next, id) => {
     next();
 });
 
-router.get("/", async (req, res) => {
-    try {
-        const user = await User.findByPk(1);
-        const user2 = await User.findByPk(2);
-        const user3 = await User.findByPk(3);
-        const user4 = await User.findByPk(4);
-        const user5 = await User.findByPk(5);
-
-        await user.addFriend([user2, user4]);
-        await user3.addFriend([user5, user2]);
-
-        const userFriends = await user.getFriend();
-
-        res.json(userFriends);
-    } catch (e) {
-        res.status(500).json(e);
-    }
-});
-
 router.post("/request/:userId", async (req, res) => {
     try {
-        const requester = await User.findByPk(5);
+        const requester = await User.findByPk(req.session.user_id);
         const requestee = req.user;
 
-        const check = await requestee.hasFriend(requester);
+        // Check if already friends
+        const checkFriend = await requestee.hasFriend(requester);
+        // Check if already requested
+        const checkRequested = await requestee.hasRequester(requester);
 
-        if (!check && !(requester.username === requestee.username)) {
+        if (!checkFriend && !(requester.username === requestee.username) && !checkRequested) {
             requestee.addRequester(requester);
+        } else {
+            res.status(412).json("Could not add user");
+            return;
         }
 
         res.status(200).json("Successfully requested");

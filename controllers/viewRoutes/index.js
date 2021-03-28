@@ -93,13 +93,20 @@ router.get("/profile/:userId", async (req, res) => {
 
         const otherUserInfo = req.user;
 
-        console.log(otherUserInfo)
-
         //check if user and otherUser are friends.
         const areFriends = await userInfo.hasFriend(otherUserInfo);
 
         // Get number of friends for otherUser
         const otherUserFriendNum = await otherUserInfo.countFriend();
+
+        // Check if you have a pending friend request for them / from them.
+        const userRequested = await otherUserInfo.hasRequester(userInfo);
+        const otherRequested = await userInfo.hasRequester(otherUserInfo);
+
+        let requested = false;
+        if (userRequested || otherRequested) {
+            requested = true;
+        }
 
         const user = userInfo.get({ plain: true });
         const otherUser = otherUserInfo.get({ plain: true });
@@ -115,6 +122,7 @@ router.get("/profile/:userId", async (req, res) => {
             areFriends,
             otherUserFriendNum,
             sameUser,
+            requested,
             requests: req.requests,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id
