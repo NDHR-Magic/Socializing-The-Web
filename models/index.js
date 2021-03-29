@@ -8,14 +8,6 @@ const Friend = require("./Friends");
 const NoteTag = require("./NoteTags");
 const SongPlaylist = require("./Song-playlist");
 
-Playlist.hasMany(Song, {
-    foreignKey: "playlist_id"
-});
-
-Song.belongsTo(Playlist, {
-    foreignKey: "playlist_id"
-});
-
 User.hasMany(Playlist, {
     foreignKey: "user_id"
 });
@@ -34,6 +26,7 @@ Notes.belongsTo(User, {
 
 Notes.belongsToMany(Tag, { through: NoteTag, foreignKey: "note_id" });
 Tag.belongsToMany(Notes, { through: NoteTag, foreignKey: "tag_id" });
+
 Song.belongsToMany(Tag, { through: SongTag, foreignKey: "song_id" });
 Tag.belongsToMany(Song, { through: SongTag, foreignKey: "tag_id" });
 
