@@ -133,6 +133,25 @@ router.get("/profile/:userId", async (req, res) => {
     }
 });
 
+router.get("/songs", async (req, res) => {
+    try {
+        const songData = await Song.findAll({
+
+        });
+        const songs = songData.map(song => song.get({ plain: true }));
+        console.log(songs)
+
+        res.render("songSearch", {
+            songs,
+            loggedIn: req.session.loggedIn,
+            requests: req.requests,
+            user_id: req.session.user_id
+        })
+    } catch (e) {
+        res.status(500).json(e);
+    }
+});
+
 router.get("/playlists", async (req, res) => {
     try {
         const userData = await User.findOne({

@@ -45,7 +45,7 @@ router.post('/playlist-test', async (req, res) => {
     }
 })
 
-router.post('/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
         const deletePlaylist = await Playlist.destroy(
             {

@@ -1,0 +1,27 @@
+{{#section 'head'}}
+<!-- stuff that goes in head...example: -->
+<link href="/CSS/member.css" rel="stylesheet">
+{{/section}}
+
+{{#section 'notification'}}
+Friend Requests: {{requests}}
+{{/section}}
+
+
+<div class="container">
+    <div class="columns custom-flex my-5">
+        <div class="column is-two-thirds bg-555 friends my-3 pt-3 mx-5">
+            <h1 class="has-text-centered is-size-2 mb-4">Songs</h1>
+            <div class="line mb-3"></div>
+            <div class="columns custom-flex">
+                <ul class="songs">
+                    <li>{{#each songs as |song|}}
+                        {{song.artist}}
+                        {{/each}}
+                        <p>test</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -13,6 +13,7 @@
                     {{#if user.playlists}}
                     {{#each user.playlists as |playlist|}}
                     <li><a href='{{playlist.id}}'>{{playlist.name}}</a></li>
+                    <li><button>Delete Playlist</button></li>
                     {{/each}}
                     {{else}}
                     <li>You do not have any playlists yet!</li>
