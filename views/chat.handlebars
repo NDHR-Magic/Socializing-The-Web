@@ -18,7 +18,7 @@
         e.preventDefault();
         if (input.value) {
             const item = document.createElement('li');
-            item.textContent = input.value;
+            item.textContent = "From me: " + input.value;
             messages.appendChild(item);
             window.scrollTo(0, document.body.scrollHeight);
 
@@ -29,7 +29,7 @@
 
     socket.on('chat message', function (msg) {
         const item = document.createElement('li');
-        item.textContent = msg;
+        item.textContent = "From otheruser: " + msg;
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
     });
