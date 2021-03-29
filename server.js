@@ -14,37 +14,10 @@ const hbs = exphs.create({ helpers });
 
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+const socketHelpers = require("./utils/socketHelpers")(io);
 
-//socket emitters/listeners
-const users = []
-io.on('connection', (socket) => {
-    socket.on('user connect', (user) => {
-        console.log(users);
-        console.log("\n\n\n");
-
-        // See if user is connected
-        let exists = false;
-        for (const i of users) {
-            if (i === user) {
-                exists = true;
-            }
-        }
-        // if not connect, push into users list
-        if (!exists) {
-            users.push(user);
-        }
-
-        io.emit('log connect', { user, connected: users.length });
-    });
-    socket.on('chat message', (msg) => {
-        socket.broadcast.emit('chat message', msg);
-    });
-    socket.on("user disconnect", (user) => {
-        const index = users.indexOf(user);
-        users.splice(index, 1);
-        io.emit('log disconnect', { user, connect: users.length });
-    })
-});
+// //socket emitters/listeners
+// io.on('connection', socketHelpers);
 
 const sess = {
     secret: "Not 100% sure how to use secrets, secret",
