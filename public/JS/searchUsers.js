@@ -1,4 +1,5 @@
 const searchUserBtn = document.getElementById("submitUserSearch");
+const openSearchBtn = document.getElementById("findUsers");
 
 const searchUsers = async (e) => {
     e.preventDefault();
@@ -18,5 +19,18 @@ const searchUsers = async (e) => {
         document.getElementById("hiddenUserError").classList.remove("hidden");
     }
 }
+// show form when search users button is clicked
+const showForm = (e) => {
+    e.preventDefault();
+    const form = document.getElementById("userSearchFields");
+
+    // show form by removing hidden class
+    form.classList.remove("hidden");
+
+    document.getElementById("cancelUserSearch").addEventListener("click", function () {
+        form.setAttribute("class", "hidden");
+    });
+}
 
 searchUserBtn.addEventListener("click", searchUsers);
+openSearchBtn.addEventListener("click", showForm);
