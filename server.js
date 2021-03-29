@@ -15,15 +15,35 @@ const hbs = exphs.create({ helpers });
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
+//socket emitters/listeners
+const users = []
 io.on('connection', (socket) => {
-    console.log('a user connected');
-    socket.on('disconnect', () => {
-        console.log('user disconnected');
+    socket.on('user connect', (user) => {
+        console.log(users);
+        console.log("\n\n\n");
+
+        // See if user is connected
+        let exists = false;
+        for (const i of users) {
+            if (i === user) {
+                exists = true;
+            }
+        }
+        // if not connect, push into users list
+        if (!exists) {
+            users.push(user);
+        }
+
+        io.emit('log connect', { user, connected: users.length });
     });
     socket.on('chat message', (msg) => {
-        console.log('message: ' + msg);
         socket.broadcast.emit('chat message', msg);
     });
+    socket.on("user disconnect", (user) => {
+        const index = users.indexOf(user);
+        users.splice(index, 1);
+        io.emit('log disconnect', { user, connect: users.length });
+    })
 });
 
 const sess = {
