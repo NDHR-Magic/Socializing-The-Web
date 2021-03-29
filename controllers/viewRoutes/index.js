@@ -211,6 +211,19 @@ router.get("/friendRequests", async (req, res) => {
     }
 });
 
+router.get("/chat", async (req, res) => {
+    try {
+
+        res.render("chat", {
+            loggedIn: req.session.loggedIn,
+            requests: req.requests,
+            user_id: req.session.user_id
+        })
+    } catch (e) {
+        res.status(500).json(e);
+    }
+});
+
 // get user Notes(profile page) there will be a div and well slap only this persons notes, and since its our 
 // router.get("userProfile", async (req, res) => {
 //     try {
