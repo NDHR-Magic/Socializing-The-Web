@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { authCheck } = require("../../middlewares");
 const { User, Song, Tag, Notes, Playlist } = require("../../models");
 const SongPlaylist = require("../../models/Song-playlist");
 
@@ -32,7 +33,7 @@ router.get("/signup", (req, res) => {
     });
 });
 
-router.get("/noteForm", (req, res) => {
+router.get("/noteForm", authCheck, (req, res) => {
     res.render("noteForm", {
         loggedIn: req.session.loggedIn,
         requests: req.requests,
@@ -40,7 +41,7 @@ router.get("/noteForm", (req, res) => {
     });
 });
 
-router.get("/member", async (req, res) => {
+router.get("/member", authCheck, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id);
         const songData = await Song.findByPk(8);
@@ -67,7 +68,7 @@ router.get("/member", async (req, res) => {
     }
 });
 
-router.get("/friends", async (req, res) => {
+router.get("/friends", authCheck, async (req, res) => {
     try {
         // change to req.session.user_id after login is finished
         const user = await User.findByPk(req.session.user_id);
@@ -88,7 +89,7 @@ router.get("/friends", async (req, res) => {
 });
 
 // Get user profiles (not for loggedIn user's own profile but a generic page for anyones that you search).
-router.get("/profile/:userId", async (req, res) => {
+router.get("/profile/:userId", authCheck, async (req, res) => {
     try {
         const userInfo = await User.findByPk(req.session.user_id);
 
@@ -133,7 +134,7 @@ router.get("/profile/:userId", async (req, res) => {
     }
 });
 
-router.get("/songs", async (req, res) => {
+router.get("/songs", authCheck, async (req, res) => {
     try {
         const songData = await Song.findAll({
 
@@ -152,7 +153,7 @@ router.get("/songs", async (req, res) => {
     }
 });
 
-router.get("/playlists", async (req, res) => {
+router.get("/playlists", authCheck, async (req, res) => {
     try {
         const userData = await User.findOne({
             where: {
@@ -175,7 +176,7 @@ router.get("/playlists", async (req, res) => {
     }
 });
 
-router.get("/playlists/:id", async (req, res) => {
+router.get("/playlists/:id", authCheck, async (req, res) => {
     const playlistData = await Playlist.findByPk(req.params.id);
 
     const songsData = await playlistData.getSongs();
@@ -192,7 +193,7 @@ router.get("/playlists/:id", async (req, res) => {
     })
 })
 
-router.get("/friendRequests", async (req, res) => {
+router.get("/friendRequests", authCheck, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id);
 
@@ -211,7 +212,7 @@ router.get("/friendRequests", async (req, res) => {
     }
 });
 
-router.get("/chat", async (req, res) => {
+router.get("/chat", authCheck, async (req, res) => {
     try {
         const userData = await User.findOne({
             where: {
@@ -233,7 +234,7 @@ router.get("/chat", async (req, res) => {
     }
 });
 
-router.get("/privateMessages", async (req, res) => {
+router.get("/privateMessages", authCheck, async (req, res) => {
     try {
         res.render("privateMessages", {
             loggedIn: req.session.loggedIn,

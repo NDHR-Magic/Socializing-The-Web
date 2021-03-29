@@ -12,4 +12,12 @@ const getRequests = async (req, res, next) => {
     next();
 }
 
-module.exports = { getRequests }
+const authCheck = (req, res, next) => {
+    if (!req.session.loggedIn) {
+        res.redirect("/login");
+    } else {
+        next();
+    }
+}
+
+module.exports = { getRequests, authCheck }
