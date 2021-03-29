@@ -12,6 +12,20 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 const hbs = exphs.create({ helpers });
 
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+    socket.on('chat message', (msg) => {
+        console.log('message: ' + msg);
+        socket.broadcast.emit('chat message', msg);
+    });
+});
+
 const sess = {
     secret: "Not 100% sure how to use secrets, secret",
     cookie: {},
@@ -37,5 +51,5 @@ app.use("/", middleware.getRequests);
 app.use(controllers);
 
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log(`Listening on the coolest PORT ${PORT}`));
+    http.listen(PORT, () => console.log(`Listening on the coolest PORT ${PORT}`));
 })
