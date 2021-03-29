@@ -10,7 +10,6 @@ router.get("/", async (req, res) => {
         });
 
         const playlists = playlistResults.map(playlist => playlist.get({ plain: true }));
-        res.json(playlists)
         console.log(playlists);
 
         res.status(200).json(playlists);
@@ -34,12 +33,27 @@ router.post('/', async (req, res) => {
 router.post('/playlist-test', async (req, res) => {
     try {
         const playlist = await Playlist.findByPk(2);
-        const song = await Song.findByPk(3)
+        const song = await Song.findByPk(6)
 
         await playlist.addSong(song)
         const playlistSongs = await playlist.getSongs();
         res.json(playlistSongs)
+        console.log('song added')
 
+    } catch (e) {
+        res.status(500).json(e);
+    }
+})
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const deletePlaylist = await Playlist.destroy(
+            {
+                where: {
+                    id: req.params.id
+                }
+            });
+        res.status(200).json(deletePlaylist)
     } catch (e) {
         res.status(500).json(e);
     }

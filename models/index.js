@@ -7,14 +7,7 @@ const Notes = require("./Notes");
 const Friend = require("./Friends");
 const NoteTag = require("./NoteTags");
 const SongPlaylist = require("./Song-playlist");
-
-Playlist.hasMany(Song, {
-    foreignKey: "playlist_id"
-});
-
-Song.belongsTo(Playlist, {
-    foreignKey: "playlist_id"
-});
+const Message = require("./Messages");
 
 User.hasMany(Playlist, {
     foreignKey: "user_id"
@@ -34,11 +27,18 @@ Notes.belongsTo(User, {
 
 Notes.belongsToMany(Tag, { through: NoteTag, foreignKey: "note_id" });
 Tag.belongsToMany(Notes, { through: NoteTag, foreignKey: "tag_id" });
+
 Song.belongsToMany(Tag, { through: SongTag, foreignKey: "song_id" });
 Tag.belongsToMany(Song, { through: SongTag, foreignKey: "tag_id" });
 
-User.belongsToMany(User, { through: Friend, as: "User", foreignKey: "user_id" });
-User.belongsToMany(User, { through: Friend, as: "Friend", foreignKey: "friend_id" });
+User.belongsToMany(User, { through: Friend, as: "User", foreignKey: "user_id", onDelete: "CASCADE" });
+User.belongsToMany(User, { through: Friend, as: "Friend", foreignKey: "friend_id", onDelete: "CASCADE" });
+
+User.belongsToMany(User, { as: "Requestees", through: "friendRequests", foreignKey: 'requesterId', onDelete: 'CASCADE' });
+User.belongsToMany(User, { as: "Requesters", through: "friendRequests", foreignKey: 'requesteeId', onDelete: 'CASCADE' });
+
+User.belongsToMany(User, { as: "messenger", through: Message, foreignKey: "receiver_id", onDelete: "CASCADE" });
+User.belongsToMany(User, { as: "receiver", through: Message, foreignKey: "messenger_id", onDelete: "CASCADE" });
 
 Song.belongsToMany(Playlist, { through: SongPlaylist, foreignKey: "song_id" });
 Playlist.belongsToMany(Song, { through: SongPlaylist, foreignKey: "playlist_id" });

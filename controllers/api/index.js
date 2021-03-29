@@ -5,6 +5,7 @@ const noteRoutes = require("./noteRoutes");
 const playlistRoutes = require("./playlistRoutes");
 const friendRoutes = require("./friendRoutes");
 
+
 router.use("/songs", songRoutes);
 router.use("/users", userRoutes);
 router.use("/notes", noteRoutes);

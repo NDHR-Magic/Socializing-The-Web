@@ -6,10 +6,18 @@ const sequelize = require("./config/connection.js");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const helpers = require("./utils/helpers");
 const controllers = require("./controllers");
+const middleware = require("./middlewares");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 const hbs = exphs.create({ helpers });
+
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const socketHelpers = require("./utils/socketHelpers")(io);
+
+// //socket emitters/listeners
+// io.on('connection', socketHelpers);
 
 const sess = {
     secret: "Not 100% sure how to use secrets, secret",
@@ -31,9 +39,10 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use("/", middleware.getRequests);
 
 app.use(controllers);
 
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log(`Listening on the coolest PORT ${PORT}`));
+    http.listen(PORT, () => console.log(`Listening on the coolest PORT ${PORT}`));
 })

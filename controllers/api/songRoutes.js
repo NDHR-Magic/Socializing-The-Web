@@ -19,4 +19,18 @@ router.get("/", async (req, res) => {
     }
 })
 
+router.get("/:id", async (req, res) => {
+    try {
+        const oneSong = await Song.findOne(
+            {
+                where: {
+                    id: req.params.id
+                }
+            });
+        res.status(200).json(oneSong);
+    } catch (e) {
+        res.status(500).json(e);
+    }
+})
+
 module.exports = router;

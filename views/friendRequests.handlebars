@@ -1,0 +1,29 @@
+<div class="container">
+    <h1 class="is-size-1 has-text-centered mt-5">Friend Requests</h1>
+    <div class="line mb-5"></div>
+
+    <div class="container">
+        {{#if friendRequests}}
+        {{#each friendRequests as |request|}}
+        <div class="custom-flex mb-3">
+            <div class="is-size-4 friendRequestCard custom-flex mb-3">
+                <div class="columns is-mobile">
+                    <div class="column is-half has-text-centered">
+                        {{request.username}}
+                    </div>
+                    <div class="column is-one-third custom-flex">
+                        <button data-id={{request.id}} class="button is-primary mr-2 acceptRequest">Accept</button>
+                        <button data-id={{request.id}} class="button is-danger rejectRequest">Reject</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+        <p>You have no friend requests</p>
+        {{/if}}
+    </div>
+</div>
+
+<script src="/JS/notifications.js"></script>
+<script src="/JS/addFriend.js"></script>
