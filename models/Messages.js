@@ -10,6 +10,10 @@ Message.init({
         primaryKey: true,
         autoIncrement: true
     },
+    text: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     messenger_id: {
         type: DataTypes.INTEGER,
         references: {
