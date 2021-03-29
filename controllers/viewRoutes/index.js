@@ -213,8 +213,17 @@ router.get("/friendRequests", async (req, res) => {
 
 router.get("/chat", async (req, res) => {
     try {
+        const userData = await User.findOne({
+            where: {
+                id: req.session.user_id
+            },
+            attributes: ['username']
+        });
+
+        const user = userData.get({ plain: true });
 
         res.render("chat", {
+            user,
             loggedIn: req.session.loggedIn,
             requests: req.requests,
             user_id: req.session.user_id
