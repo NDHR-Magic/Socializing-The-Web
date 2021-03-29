@@ -33,20 +33,16 @@ router.get("/noteForm", (req, res) => {
 router.get("/member", async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id);
-        const songData = await Song.findByPk(8);
-
         // Stuff for friends notes later.
 
         const userFriendNum = await userData.countFriend();
 
         const user = await userData.get({ plain: true });
-        const song = await songData.get({ plain: true });
 
         console.log(userFriendNum);
 
         res.render("memberHome", {
             user,
-            song,
             userFriendNum,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id
@@ -135,28 +131,30 @@ router.get("/playlists", async (req, res) => {
     }
 });
 
-// get user Notes(profile page) there will be a div and well slap only this persons notes, and since its our 
-// router.get("userProfile", async (req, res) => {
-//     try {
-//         const userData = await User.findOne({
-//             where: {
-//                 id: req.session.user_id
-//             },
-//             include: {
-//                 model: Playlist
-//             }
-//         });
-//         const user = userData.get({ plain: true });
-//         console.log(user)
-//         res.render("playlists", {
-//             user,
-//             loggedIn: req.session.loggedIn,
-//             user_id: req.session.user_id
-//         })
-//     } catch (e) {
-//         res.status(500).json(e);
-//     }
-// });
+// get user Notes(profile page) there will be a div and well slap only this persons notes, and since its outr  
+
+router.get("userProfile", async (req, res) => {
+    try {
+        const userData = await User.findOne({
+            where: {
+                id: req.session.user_id
+            },
+            include: {
+                model: Notes
+            }
+        });
+        const user = userData.get({ plain: true });
+        console.log(user)
+        res.render("userProfile", {
+            user,
+            loggedIn: req.session.loggedIn,
+            user_id: req.session.user_id
+        })
+    } catch (e) {
+        res.status(500).json(e);
+    }
+});
+
 
 
 module.exports = router;
