@@ -62,4 +62,22 @@ router.post('/logout', (req, res) => {
   }
 });
 
+// Search users based on user form input
+router.post('/find', async (req, res) => {
+  try {
+    const userResults = await User.findOne({
+      where: { ...req.body }
+    });
+
+    if (!userResults) {
+      res.status(404).json("Could not find user");
+      return;
+    }
+
+    res.status(200).json(userResults);
+  } catch (e) {
+    res.status(500).json(e);
+  }
+});
+
 module.exports = router;

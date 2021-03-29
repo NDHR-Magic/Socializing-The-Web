@@ -29,6 +29,14 @@ body, html {
     min-height: 700px;
 }
 
+.center-stuff {
+    margin: 0 auto;
+}
+
+.red {
+    color: red;
+}
+
 @media only screen and (max-width: 768px) {
     .options-wrapper {
         margin-left: 30px;
