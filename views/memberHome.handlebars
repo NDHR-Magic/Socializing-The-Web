@@ -3,10 +3,6 @@
 <link href="/CSS/member.css" rel="stylesheet">
 {{/section}}
 
-{{#section 'notification'}}
-Friend Requests: {{requests}}
-{{/section}}
-
 <header class="container">
     <h1 class="has-text-centered is-size-1 mt-3 mb-5">Welcome {{user.username}}</h1>
 </header>
@@ -22,8 +18,31 @@ Friend Requests: {{requests}}
                     <a href="/noteForm" class="button options-button">Create Note</a>
                 </div>
 
-                <div class="custom-flex mb-3">
-                    <button id="findUsers" class="button options-button">Search For Users</button>
+                {{!-- Button to call field to search users --}}
+                <div class="has-text-centered center-stuff">
+                    <div class="custom-flex mb-3">
+                        <button id="findUsers" class="button options-button">Search For Users</button>
+                    </div>
+                </div>
+                {{!-- Search users --}}
+                <div id="userSearchFields" class="hidden">
+                    <div class="field options-button has-text-centered center-stuff">
+                        <label for="userSearch" class="label has-text-light">Search Users</label>
+                        <div class="control">
+                            <input id="userSearch" class="input" type="text" placeholder="Username">
+                        </div>
+                        <p class="help">This will direct you to their page</p>
+                        <p id="hiddenUserError" class="has-text-centered red hidden">Could not find user</p>
+                    </div>
+                    {{!-- submit user search or cancel --}}
+                    <div class="field is-grouped mb-3 center-stuff">
+                        <div class="control center-stuff">
+                            <button id="submitUserSearch" class="button is-link">Search</button>
+                        </div>
+                        <div class="control center-stuff">
+                            <button id="cancelUserSearch" class="button is-link is-light">Cancel</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="custom-flex mb-3">
@@ -71,3 +90,4 @@ Friend Requests: {{requests}}
 </main>
 
 <script src="/JS/notifications.js"></script>
+<script src="/JS/searchUsers.js"></script>
