@@ -13,6 +13,10 @@ body, html {
     background: #555;
 }
 
+.custom-border-right {
+    border-right: 1px solid #111;
+}
+
 .note-container {
     min-height: 700px;
 }
