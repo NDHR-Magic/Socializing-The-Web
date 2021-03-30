@@ -1,16 +1,26 @@
 {{#section 'head'}}
-<link href="/CSS/chat.css" rel="stylesheet">
+<link href="/CSS/chat2.css" rel="stylesheet">
 {{/section}}
 
 <div class="container.is-fullhd">
     <div class="columns is-mobile">
-        <div class="column is-one-third px-5 custom-border-right">test</div>
-        <div class="column is-two-thirds px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem sed, quidem
-            necessitatibus facere similique, eius quas reprehenderit inventore at delectus modi aliquam ducimus
-            doloremque amet. Consectetur excepturi nesciunt nemo molestias optio autem cupiditate enim, sed,
-            consequuntur beatae at libero, repudiandae quae facilis nulla odio dicta facere necessitatibus iste quas
-            dolorem.</div>
+        <div class="column is-one-third custom-border-right word-wrap">
+            {{#if receivers}}
+            {{#each receivers as |receiver|}}
+            {{> receiver-info}}
+            {{/each}}
+            {{else}}
+            <p class="has-text-centered">You have no messages</p>
+            {{/if}}
+        </div>
+        <div class="column is-two-thirds px-2">
+            <ul id="messages"></ul>
+            <form id="form" action="">
+                <input id="input" autocomplete="off" data-user={{user.username}} /><button id="send">Send</button>
+            </form>
+        </div>
     </div>
 </div>
 
+<script src="/socket.io/socket.io.js"></script>
 <script src="/JS/sendMessage.js"></script>
