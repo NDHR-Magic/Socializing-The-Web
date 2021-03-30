@@ -244,7 +244,7 @@ router.get("/privateMessages", authCheck, async (req, res) => {
 
 // get user Notes(profile page) there will be a div and well slap only this persons notes, and since its outr  
 
-router.get("userProfile", async (req, res) => {
+router.get("/userProfile", async (req, res) => {
     try {
         const userData = await User.findOne({
             where: {
@@ -255,7 +255,7 @@ router.get("userProfile", async (req, res) => {
             }
         });
         const user = userData.get({ plain: true });
-        console.log(user)
+
         res.render("userProfile", {
             user,
             loggedIn: req.session.loggedIn,
