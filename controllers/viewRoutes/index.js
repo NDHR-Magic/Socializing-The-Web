@@ -232,7 +232,14 @@ router.get("/chat", authCheck, async (req, res) => {
 
 router.get("/privateMessages", authCheck, async (req, res) => {
     try {
+        const currrentUser = await User.findByPk(req.session.user_id);
+
+        const receiversData = await currrentUser.getReceiver();
+
+        const receivers = receiversData.map(receiver => receiver.get({ plain: true }));
+
         res.render("privateMessages", {
+            receivers,
             loggedIn: req.session.loggedIn,
             requests: req.requests,
             user_id: req.session.user_id
