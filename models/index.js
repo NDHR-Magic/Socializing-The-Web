@@ -37,8 +37,8 @@ User.belongsToMany(User, { through: Friend, as: "Friend", foreignKey: "friend_id
 User.belongsToMany(User, { as: "Requestees", through: "friendRequests", foreignKey: 'requesterId', onDelete: 'CASCADE' });
 User.belongsToMany(User, { as: "Requesters", through: "friendRequests", foreignKey: 'requesteeId', onDelete: 'CASCADE' });
 
-User.belongsToMany(User, { as: "messenger", through: Message, foreignKey: "receiver_id", onDelete: "CASCADE" });
-User.belongsToMany(User, { as: "receiver", through: Message, foreignKey: "messenger_id", onDelete: "CASCADE" });
+User.belongsToMany(User, { as: "Messenger", through: "Message", foreignKey: "receiver_id", onDelete: "CASCADE" });
+User.belongsToMany(User, { as: "Receiver", through: "Message", foreignKey: "messenger_id", onDelete: "CASCADE" });
 
 Song.belongsToMany(Playlist, { through: SongPlaylist, foreignKey: "song_id" });
 Playlist.belongsToMany(Song, { through: SongPlaylist, foreignKey: "playlist_id" });
