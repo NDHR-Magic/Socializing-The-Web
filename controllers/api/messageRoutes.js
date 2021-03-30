@@ -12,10 +12,9 @@ router.post("/sendMessage/:id", async (req, res) => {
             // check if they have a chat history
             const checkMessage = await currentUser.hasReceiver(userToMessage);
 
-            console.log(checkMessage);
-
             if (!checkMessage) {
                 await currentUser.addReceiver(userToMessage);
+                await currentUser.addMessenger(userToMessage);
                 res.status(201).json({ message: "Created message" });
             } else {
                 res.status(302).json({ message: "Messages found" });
