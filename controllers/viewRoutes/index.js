@@ -266,6 +266,14 @@ router.get("/userProfile", async (req, res) => {
     }
 });
 
+router.get("/updatepassword", authCheck, (req, res) => {
+    res.render("updatePassword", {
+        loggedIn: req.session.loggedIn,
+        requests: req.requests,
+        user_id: req.session.user_id
+    });
+});
+
 
 
 module.exports = router;
