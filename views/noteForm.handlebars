@@ -3,97 +3,73 @@
 <link href="/CSS/style.css" rel="stylesheet">
 {{/section}}
 
-<body>
-    <div class="container">
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label class="label">#Mood</label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <p class="control is-expanded has-icons-left">
-                        <input class="input" type="text" placeholder="Name">
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-user"></i>
-                        </span>
-                    </p>
-                </div>
-
-            </div>
+<div id="form" class="container mt-5">
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label for="noteTitle" class="label">Title</label>
         </div>
-
-
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label class="label">Sooo...?</label>
+        <div class="field-body">
+            <div class="field">
+                <p class="control is-expanded has-icons-left">
+                    <input id="noteTitle" class="input" type="text" placeholder="Name">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </p>
             </div>
-            <div class="field-body">
-                <div class="field is-narrow">
-                    <div class="control">
-                        <div class="select is-fullwidth">
-                            <select>
-                                <option>Songs</option>
-                                <option>Playlist</option>
-                                <option>Mood</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
+    </div>
 
 
-        <div class="field is-horizontal">
-            <div class="field-label is-normal">
-                <label class="label">Dear diary...</label>
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <div class="control">
-                        <textarea class="textarea" placeholder="Explain how it made you feel"></textarea>
-                    </div>
-                </div>
-            </div>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Sooo...?</label>
         </div>
-
-        <div class="field is-horizontal">
-            <div class="field-label">
-                <!-- Left empty for spacing -->
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <div class="control">
-                        <button class="button is-primary">
-                            Submit
-                        </button>
+        <div class="field-body">
+            <div class="field is-narrow">
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select>
+                            <option>Songs</option>
+                            <option>Playlist</option>
+                            <option>Mood</option>
+                        </select>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
 
 
-{{!-- <body>
-    <div class='container'>
-        <div class='jumbotron text-center'>
-            <h1>#MOODS</h1>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label for="noteDescription" class="label">Dear diary...</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <textarea id="noteDescription" class="textarea"
+                        placeholder="Explain how it made you feel"></textarea>
+                </div>
+            </div>
         </div>
     </div>
-    <div>
-        <input name="Note_Title" placeholder="enter your title">
+
+    <div class="field is-horizontal">
+        <div class="field-label">
+            <!-- Left empty for spacing -->
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <button id="noteSubmit" class="button is-primary">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Example textarea</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            {{!-- <input name="name" placeholder="enter your mood">
-            <input name="band" placeholder="enter song"> --}}
-<button type='submit'>submit</button>
-</form>
 </div>
-</div>
-</div>
-</body> --}}
+
+<script src="/JS/notes.js"></script>

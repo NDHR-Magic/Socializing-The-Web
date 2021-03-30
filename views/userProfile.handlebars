@@ -7,20 +7,22 @@
 <div class="container.is-fullhd my-5">
     <div class="columns custom-flex">
         <div class="column is-one-quarter bg-555 custom-border-right">
-            <p class="has-centered-text">David put stuff here</p>
+            <p class="has-text-centered">David put stuff here</p>
         </div>
         <div class="column is-two-thirds bg-555 pt-4">
-            <h1 class="is-size-2 has-centered-text">My Notes</h1>
-            <div class="line"></div>
+            <h1 class="is-size-2 has-text-centered mb-3">My Notes</h1>
+            <div class="line mb-3"></div>
 
             {{#if loggedIn}}
             {{#each user.Notes as |note|}}
             <div class="custom-card-header">
-                <h2 class="is-size-3">{{note.title}}</h2>
+                <h2 class="is-size-3">Title: {{note.title}}</h2>
             </div>
             <div class="custom-card-body">
-                <p>{{note.description}}</p>
+                <p>Note description: {{note.description}}</p>
             </div>
+            <button data-note_id={{note.id}} class="button is-danger mt-2">Delete Note</button>
+            <hr>
             {{/each}}
             {{/if}}
         </div>
