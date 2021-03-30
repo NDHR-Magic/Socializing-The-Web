@@ -3,7 +3,32 @@
 <link href="/CSS/member.css" rel="stylesheet">
 {{/section}}
 
-<div class="dropdown">
+
+<div class="container.is-fullhd my-5">
+    <div class="columns custom-flex">
+        <div class="column is-one-quarter bg-555 custom-border-right">
+            <p class="has-centered-text">David put stuff here</p>
+        </div>
+        <div class="column is-two-thirds bg-555 pt-4">
+            <h1 class="is-size-2 has-centered-text">My Notes</h1>
+            <div class="line"></div>
+
+            {{#if loggedIn}}
+            {{#each user.Notes as |note|}}
+            <div class="custom-card-header">
+                <h2 class="is-size-3">{{note.title}}</h2>
+            </div>
+            <div class="custom-card-body">
+                <p>{{note.description}}</p>
+            </div>
+            {{/each}}
+            {{/if}}
+        </div>
+    </div>
+</div>
+
+
+{{!-- <div class="dropdown">
     <div class="dropdown-trigger">
         <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
             <span>Click me</span>
@@ -28,4 +53,4 @@
             </a>
         </div>
     </div>
-</div>
+</div> --}}
