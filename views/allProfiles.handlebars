@@ -29,8 +29,7 @@
                     <button id="deleteFriend" data-id={{otherUser.id}} class="button is-danger">Unfriend</button>
                 </div>
                 <div class="custom-flex mt-3">
-                    <button id="sendMessage" data-id={{otherUser.id}} class="button is-primary"><a
-                            href="/privateMessages">Send Message</a></button>
+                    <button id="sendMessage" data-id={{otherUser.id}} class="button is-primary">Send Message</button>
                 </div>
                 {{else}}
                 {{!-- check if either you or this user has requested each other ass friends (and still pending) --}}
@@ -58,3 +57,4 @@
 
 <script src="/JS/friends.js"></script>
 <script src="/JS/addFriend.js"></script>
+<script src="/JS/sendMessage.js"></script>
