@@ -28,6 +28,10 @@
                 <div class="custom-flex">
                     <button id="deleteFriend" data-id={{otherUser.id}} class="button is-danger">Unfriend</button>
                 </div>
+                <div class="custom-flex mt-3">
+                    <button id="sendMessage" data-id={{otherUser.id}} class="button is-primary"><a
+                            href="/privateMessages">Send Message</a></button>
+                </div>
                 {{else}}
                 {{!-- check if either you or this user has requested each other ass friends (and still pending) --}}
                 {{#if requested}}
