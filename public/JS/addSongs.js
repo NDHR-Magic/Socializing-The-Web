@@ -68,8 +68,9 @@ function createlistItems(playlist) {
 
     const li = document.createElement('li')
     const btn = document.createElement('button');
-    btn.setAttribute("class", "addToList");
+    btn.setAttribute("class", "addToList py-2");
     btn.setAttribute("data-playlist", playlist.id);
+    li.setAttribute("class", "mb-3");
 
     btn.textContent = playlist.name
     li.appendChild(btn)
