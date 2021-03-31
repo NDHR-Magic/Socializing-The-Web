@@ -1,13 +1,17 @@
+{{#section 'head'}}
+<!-- stuff that goes in head...example: -->
+<link href="/CSS/member.css" rel="stylesheet">
+{{/section}}
 
 <div class="columns my-6"></div>
 
 <div class="columns my-6">
 
-    <div class="column">
+    <div class="column is-half is-offset-one-quarter">
 
-        <div class="card">
-            <div class="card-header">
-                Please Enter Your Log In Credentials
+        <div class="card has-background-dark">
+            <div class="card-header has-text-white">
+                <p class="ml-4 my-2 is-size-3">Please Enter Your Log In Credentials</p>
             </div>
             <div class="card-content">
 
@@ -16,9 +20,6 @@
                       <input class="input" type="email" placeholder="Email" id="emailInput">
                       <span class="icon is-small is-left">
                         <i class="fas fa-envelope"></i>
-                      </span>
-                      <span class="icon is-small is-right">
-                        <i class="fas fa-check"></i>
                       </span>
                     </p>
                   </div>
@@ -43,18 +44,10 @@
 </div>
 
 <div class="columns">
-    <div class="column is-one-fifth"></div>
-    <div class="column">
-        <h2>No account created? Click button below to get stared!</h2>
+    <div class="column is-offset-one-quarter">
+        <h2>No account created? Click button below to get started!</h2>
+        <button class="button is-success" id="signupButton"><a href='/signup'>Sign up here</a></button>
     </div>
 </div>
-
-<div class="columns">
-    <div class="column is-one-fifth"></div>
-    <div class="column">   
-         <button class="button is-info" id="signupButton"><a href='/signup'>Sign up here</a></button>
-    </div>
-</div>
-
 
 <script src='/JS/login.js'></script>
