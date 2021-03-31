@@ -25,6 +25,14 @@ Notes.belongsTo(User, {
     foreignKey: "user_id"
 });
 
+Song.hasMany(Notes, {
+    foreignKey: "song_id"
+});
+
+Notes.belongsTo(Song, {
+    foreignKey: "song_id"
+})
+
 Notes.belongsToMany(Tag, { through: NoteTag, foreignKey: "note_id" });
 Tag.belongsToMany(Notes, { through: NoteTag, foreignKey: "tag_id" });
 

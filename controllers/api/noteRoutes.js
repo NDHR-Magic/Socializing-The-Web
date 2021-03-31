@@ -29,6 +29,39 @@ router.post('/', async (req, res) => {
     }
 });
 
+// Add song to notes
+router.post("/addSong", async (req, res) => {
+    try {
+        const { songName, noteId } = req.body
+
+        const songData = await Song.findOne({
+            where: {
+                name: songName
+            }
+        });
+
+        const noteData = await Notes.findOne({
+            where: {
+                id: noteId
+            }
+        });
+
+        if (!songData) {
+            res.status(404).json({ message: "Could not find song" });
+            return;
+        }
+
+        await songData.addNotes(noteData);
+        const check = await songData.hasNotes(noteData);
+        console.log(check);
+
+        res.status(200).json({ message: "Successfully added song to note" });
+
+    } catch (e) {
+        res.status(500).json(e);
+    }
+})
+
 router.put('/:id', async (req, res) => {
 
     try {

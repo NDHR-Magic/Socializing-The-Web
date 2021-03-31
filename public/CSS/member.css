@@ -1,5 +1,6 @@
 body, html {
     background: #111;
+    /* background: linear-gradient(to right, rgb(2, 2, 2), rgb(134, 132, 132));  */
     color: white;
     height: 100%;
 }
@@ -46,8 +47,14 @@ body, html {
     color: red;
 }
 
+
 #menuChoice:hover {
     color: greenyellow;
+}
+
+#songInput {
+    width: 25%;
+
 }
 
 @media only screen and (max-width: 768px) {
