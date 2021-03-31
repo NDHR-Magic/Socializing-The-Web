@@ -1,29 +1,33 @@
+{{#section 'head'}}
+<!-- stuff that goes in head...example: -->
+<link href="/CSS/member.css" rel="stylesheet">
+{{/section}}
+
 <div class="columns my-6"></div>
 
 <div class="columns my-6">
 
-    <div class="column">
+    <div class="column is-half is-offset-one-quarter">
 
-        <div class="card">
+        <div class="card has-background-dark">
             <div class="card-header">
-                Please Enter In Your Information
+               <p class="is-size-1 has-text-white ml-4">Please Enter In Your Information</p> 
             </div>
-            <div class="card-content">
-
+            <div class="card-content has-text-white">
                 <div class="field">
-                    <label class="label">First Name</label>
+                    <label class="label has-text-white">First Name</label>
                     <div class="control">
                       <input class="input" type="text" placeholder="First name" id='firstName'>
                     </div>
                   </div>
                 <div class="field">
-                    <label class="label">Last Name</label>
+                    <label class="label has-text-white">Last Name</label>
                     <div class="control">
                       <input class="input" type="text" placeholder="Last name" id='lastName'>
                     </div>
                   </div>
                 <div class="field">
-                    <label class="label">Username</label>
+                    <label class="label has-text-white">Username</label>
                     <div class="control has-icons-left has-icons-right">
                         <input class="input" type="text" placeholder="Username" id='username'>
                         <span class="icon is-small is-left">
@@ -32,7 +36,7 @@
                   </div>
                 </div>
                 <div class="field">
-                    <label class="label">Password</label>
+                    <label class="label has-text-white">Password</label>
                     <div class="control has-icons-left has-icons-right">
                         <input class="input" type="text" placeholder="Password" id='password'>
                         <span class="icon is-small is-left">
@@ -41,7 +45,7 @@
                   </div>
                 </div>
                 <div class="field">
-                    <label class="label">Email</label>
+                    <label class="label has-text-white">Email</label>
                     <div class="control has-icons-left has-icons-right">
                         <input class="input" type="email" placeholder="Email" id='email' >
                         <span class="icon is-small is-left">
@@ -52,10 +56,11 @@
                                     
                   <div class="field is-grouped">
                     <div class="control">
-                      <button class="button is-link" id="signupButton">SIGNUP</button>
+                      <button class="button is-success" id="signupButton">SIGNUP</button>
                     </div>
                     <div class="control">
-                      <button class="button is-link is-light">Cancel</button>
+                      <button class="button is-danger" id="cancelButton">
+                          <a href="/">Cancel</button></a>
                     </div>
                   </div>
         
@@ -69,16 +74,9 @@
 </div>
 
 <div class="columns">
-    <div class="column is-one-fifth"></div>
-    <div class="column">
-        <h2>Already have an account? Click the button below to get logged in!</h2>
-    </div>
-</div>
-
-<div class="columns">
-    <div class="column is-one-fifth"></div>
-    <div class="column">   
-         <button class="button is-info" id="loginSignup"><a href='/login'>Log In</a></button>
+    <div class="column is-offset-one-quarter">
+    <h2>Already have an account? Click the button below to get logged in!</h2>
+         <button class="button is-link" id="loginSignup"><a href='/login'>Log In</a></button>
     </div>
 </div>
 

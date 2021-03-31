@@ -168,6 +168,19 @@ router.get("/songs", authCheck, async (req, res) => {
     }
 });
 
+router.get("/songs/:id", authCheck, async (req, res) => {
+    const getSong = await Song.findByPk(req.params.id);
+
+    const song = getSong.get({ plain: true });
+
+    res.render("songPage", {
+        song,
+        requests: req.requests,
+        loggedIn: req.session.loggedIn,
+        user_id: req.session.user_id
+    })
+})
+
 router.get("/playlists", authCheck, async (req, res) => {
     try {
         const userData = await User.findOne({

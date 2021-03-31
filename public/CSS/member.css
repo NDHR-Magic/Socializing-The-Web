@@ -4,6 +4,10 @@ body, html {
     height: 100%;
 }
 
+.a {
+    color: black !important;
+}
+
 .options-wrapper {
     background: #555;
     margin-right: 20px;
