@@ -9,6 +9,9 @@ const deleteNote = async (e) => {
     const deleteNoteData = await fetch(`/api/notes/${ID}`, {
         method: "DELETE"
     });     
+    if (deleteNoteData.status === 200){
+        window.location.reload()
+    }
 };
 
 if (deleteNoteBtn){
