@@ -3,10 +3,10 @@
 <link href="/CSS/member.css" rel="stylesheet">
 {{/section}}
 
-<div id="form" class="container mt-5">
+<div id="form" class="container mt-5 py-3 bg-555 has-text-light">
     <div class="field is-horizontal">
         <div class="field-label is-normal">
-            <label for="noteTitle" class="label">Title</label>
+            <label for="noteTitle" class="label has-text-light">Title</label>
         </div>
         <div class="field-body">
             <div class="field">
@@ -21,29 +21,9 @@
         </div>
     </div>
 
-
     <div class="field is-horizontal">
         <div class="field-label is-normal">
-            <label class="label">Sooo...?</label>
-        </div>
-        <div class="field-body">
-            <div class="field is-narrow">
-                <div class="control">
-                    <div class="select is-fullwidth">
-                        <select>
-                            <option>Songs</option>
-                            <option>Playlist</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="field is-horizontal">
-        <div class="field-label is-normal">
-            <label for="noteDescription" class="label">Dear diary...</label>
+            <label for="noteDescription" class="label has-text-light">Dear diary...</label>
         </div>
         <div class="field-body">
             <div class="field">
@@ -68,5 +48,42 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <script src="/JS/notes.js"></script>
+<form id="songForm" class="container mt-5 py-3 bg-555 has-text-light hidden">
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label has-text-light mx-3">Would you like to add a song to the note?</label>
+        </div>
+        <div class="field-body">
+            <div class="field is-narrow">
+                <div class="control center-stuff">
+                    <button id="linkSong" class="button">
+                        Yes (click me)
+                    </button>
+                    <button id="rejectLink" class="button">
+                        No
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="songSearchForm" class="field is-horizontal hidden">
+        <div class="field-label is-normal">
+            <label for="songInput" class="label has-text-light mx-3">What is the name of the song?</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <p class="control is-expanded has-icons-left">
+                    <input id="songInput" class="input" type="text" placeholder="Name"> <button id="submitSong"
+                        class="button is-link ml-2">Add Song</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script src="/JS/notes.js"></script>
