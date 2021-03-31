@@ -48,7 +48,6 @@ router.get("/member", authCheck, async (req, res) => {
 
         //get friend notes
         const userFriendNotes = await userData.getFriend();
-
         const friendList = [];
 
         for (const friend of userFriendNotes) {
@@ -62,22 +61,19 @@ router.get("/member", authCheck, async (req, res) => {
                 limit: 1
             });
             // Get plain version of each note.
-            const plainNote = note[0].get({ plain: true });
-            // Add note to friend note array
-            newFriend.addNote(plainNote);
-            // Add friend to friendList array
-
-            friendList.push(newFriend);
+            if (note.length > 0) {
+                const plainNote = note[0].get({ plain: true });
+                // Add note to friend note array
+                newFriend.addNote(plainNote);
+                // Add friend to friendList array
+                friendList.push(newFriend);
+            }
         }
-
         //Sort friends list
         const sortedFriends = friendList.slice().sort((a, b) => b.note.created_at - a.note.created_at);
         // Get only top 6 of friendList.
         const friendsToDisplay = sortedFriends.splice(0, 6);
-        friendPostsLength = friendsToDisplay.length;
-
-        console.log(friendList);
-        console.log(sortedFriends);
+        const friendPostsLength = friendsToDisplay.length;
 
         const userFriendNum = await userData.countFriend();
 
