@@ -26,6 +26,7 @@ router.post("/addFriend/:userId", async (req, res) => {
         if (checkRequest) {
             await user.removeRequester(requester);
             await user.addFriend(requester);
+            await requester.addFriend(user);
         }
 
         res.status(202).json("You have successfully accepted the request");

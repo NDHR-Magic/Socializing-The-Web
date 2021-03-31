@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const { authCheck } = require("../../middlewares");
-const { User, Song, Tag, Notes, Playlist } = require("../../models");
+const { User, Song, Tag, Notes, Playlist, Friend } = require("../../models");
 const SongPlaylist = require("../../models/Song-playlist");
+const FriendClass = require("../../utils/classes");
 
 router.param("userId", async (req, res, next, id) => {
     const userData = await User.findByPk(id);
@@ -44,17 +45,49 @@ router.get("/noteForm", authCheck, (req, res) => {
 router.get("/member", authCheck, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id);
-        // Stuff for friends notes later.
+
+        //get friend notes
+        const userFriendNotes = await userData.getFriend();
+
+        const friendList = [];
+
+        for (const friend of userFriendNotes) {
+            // Make friend class
+            const newFriend = new FriendClass(friend.username);
+            // Get the notes for this friend. Order by newest and limit 2 notes.
+            const note = await friend.getNotes({
+                order: [
+                    ['created_at', "DESC"]
+                ],
+                limit: 1
+            });
+            // Get plain version of each note.
+            const plainNote = note[0].get({ plain: true });
+            // Add note to friend note array
+            newFriend.addNote(plainNote);
+            // Add friend to friendList array
+
+            friendList.push(newFriend);
+        }
+
+        //Sort friends list
+        const sortedFriends = friendList.slice().sort((a, b) => b.note.created_at - a.note.created_at);
+        // Get only top 6 of friendList.
+        const friendsToDisplay = sortedFriends.splice(0, 6);
+        friendPostsLength = friendsToDisplay.length;
+
+        console.log(friendList);
+        console.log(sortedFriends);
 
         const userFriendNum = await userData.countFriend();
-        const userRequests = await userData.getRequesters();
-        const numRequests = await userData.countRequesters();
 
         const user = await userData.get({ plain: true });
 
         res.render("memberHome", {
             user,
             userFriendNum,
+            friendsToDisplay,
+            friendPostsLength,
             requests: req.requests,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id

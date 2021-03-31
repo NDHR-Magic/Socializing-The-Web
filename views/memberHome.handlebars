@@ -63,21 +63,19 @@
 
         <div class="column is-two-thirds">
             <div class="bg-555">
-                <h2 class="has-text-centered is-size-3 mb-2">Recent Notes From Friends</h2>
-
-                <div class="line mb-3"></div>
+                <h2 class="has-text-centered is-size-3 mb-5">Recent Notes From Friends</h2>
 
                 <div class="note-container">
-                    <h3 class="has-text-centered">{{song.name}}</h3>
-                    <div class="custom-flex">
-                        <audio controls>
-                            <source src="{{song.file_path}}" type="audio/mpeg">
-                            Your browser does not support the audio element
-                        </audio>
-                    </div>
-
+                    {{!-- If user has friends --}}
                     {{#if userFriendNum}}
+                    {{!-- If friends have any posts --}}
+                    {{#if friendPostsLength}}
+                    {{#each friendsToDisplay as |friend|}}
+                    {{> friend-post-info}}
+                    {{/each}}
+                    {{else}}
                     <p class="has-text-centered">Placeholder</p>
+                    {{/if}}
                     {{else}}
                     <p class="has-text-centered">You don't have any friends yet!</p>
                     {{/if}}
