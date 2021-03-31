@@ -74,6 +74,7 @@ router.get("/member", authCheck, async (req, res) => {
         const sortedFriends = friendList.slice().sort((a, b) => b.note.created_at - a.note.created_at);
         // Get only top 6 of friendList.
         const friendsToDisplay = sortedFriends.splice(0, 6);
+        friendPostsLength = friendsToDisplay.length;
 
         console.log(friendList);
         console.log(sortedFriends);
@@ -85,6 +86,7 @@ router.get("/member", authCheck, async (req, res) => {
         res.render("memberHome", {
             user,
             userFriendNum,
+            friendsToDisplay,
             friendsToDisplay,
             requests: req.requests,
             loggedIn: req.session.loggedIn,
