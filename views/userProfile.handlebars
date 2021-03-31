@@ -39,38 +39,11 @@
             <div class="custom-card-body">
                 <p>Note description: {{note.description}}</p>
             </div>
-            <button data-note_id={{note.id}} class="button is-danger mt-2">Delete Note</button>
+            <button data-note_id={{note.id}} class="button is-danger mt-2" id= "noteDelete">Delete Note</button>
             <hr>
             {{/each}}
             {{/if}}
         </div>
     </div>
 </div>
-
-
-{{!-- <div class="dropdown">
-    <div class="dropdown-trigger">
-        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-            <span>Click me</span>
-            <span class="icon is-small">
-                <i class="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-        </button>
-    </div>
-    <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-        <div class="dropdown-content">
-            <a href="#" class="dropdown-item">
-                Songs
-            </a>
-            <a href="#" class="dropdown-item">
-                Playlist
-            </a>
-            <a href="#" class="dropdown-item">
-                mood
-            </a>
-            <a href="#" class="dropdown-item">
-                notes
-            </a>
-        </div>
-    </div>
-</div> --}}
+ <script src="/JS/deleteNote.js"></script>
