@@ -1,0 +1,13 @@
+<div class="columns">
+    <div class="column is-one-third mx-3 custom-border-right">
+        <div class="note-header">
+            <h3>{{this.username}}</h3>
+            <p class="mb-2">Posted at: {{format_date this.note.created_at}} {{format_time this.note.created_at}}</p>
+        </div>
+    </div>
+    <div class="column is-three-fifths">
+        <h4 class="is-size-4 has-text-centered"><u>Note Title: {{this.note.title}}</u></h4>
+        <p>Text Entry: {{this.note.description}}</p>
+    </div>
+</div>
+<div class="line mb-3"></div>

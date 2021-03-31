@@ -87,7 +87,7 @@ router.get("/member", authCheck, async (req, res) => {
             user,
             userFriendNum,
             friendsToDisplay,
-            friendsToDisplay,
+            friendPostsLength,
             requests: req.requests,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id
