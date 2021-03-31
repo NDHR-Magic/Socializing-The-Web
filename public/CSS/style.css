@@ -31,6 +31,10 @@ a {
     color: red;
 }
 
+.green {
+    color: greenyellow;
+}
+
 .hidden {
     display: none;
 }
