@@ -80,4 +80,31 @@ router.post('/find', async (req, res) => {
   }
 });
 
+// router.put for update password when on actual update password page
+router.put('/updatepassword', async (req, res) => {
+  try {
+    const currentUser = await User.findOne({ where: { id: req.session.user_id } });
+    console.log(req.body);
+
+    const currentPassword = await currentUser.checkPassword(req.body.currentPassword);
+    console.log(currentPassword)
+
+    if (!currentPassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect password, please try again' });
+      return;
+    }
+    await currentUser.update({ password: req.body.newPassword }, { where: {id: req.session.user_id}})
+
+    res.status(200).json({ message: 'Successfully updated password'})
+
+
+  } catch (e) {
+    res.status(500).json(e);
+  }
+
+});
+
+
 module.exports = router;

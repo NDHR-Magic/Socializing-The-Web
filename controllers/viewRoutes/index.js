@@ -149,6 +149,19 @@ router.get("/songs", authCheck, async (req, res) => {
     }
 });
 
+router.get("/songs/:id", authCheck, async (req, res) => {
+    const getSong = await Song.findByPk(req.params.id);
+
+    const song = getSong.get({ plain: true });
+
+    res.render("songPage", {
+        song,
+        requests: req.requests,
+        loggedIn: req.session.loggedIn,
+        user_id: req.session.user_id
+    })
+})
+
 router.get("/playlists", authCheck, async (req, res) => {
     try {
         const userData = await User.findOne({
@@ -232,7 +245,14 @@ router.get("/chat", authCheck, async (req, res) => {
 
 router.get("/privateMessages", authCheck, async (req, res) => {
     try {
+        const currrentUser = await User.findByPk(req.session.user_id);
+
+        const receiversData = await currrentUser.getReceiver();
+
+        const receivers = receiversData.map(receiver => receiver.get({ plain: true }));
+
         res.render("privateMessages", {
+            receivers,
             loggedIn: req.session.loggedIn,
             requests: req.requests,
             user_id: req.session.user_id
@@ -264,6 +284,14 @@ router.get("/userProfile", async (req, res) => {
     } catch (e) {
         res.status(500).json(e);
     }
+});
+
+router.get("/updatepassword", authCheck, (req, res) => {
+    res.render("updatePassword", {
+        loggedIn: req.session.loggedIn,
+        requests: req.requests,
+        user_id: req.session.user_id
+    });
 });
 
 

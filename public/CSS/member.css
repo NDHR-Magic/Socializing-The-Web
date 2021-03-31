@@ -1,6 +1,11 @@
 body, html {
     background: #111;
     color: white;
+    height: 100%;
+}
+
+.a {
+    color: black !important;
 }
 
 .options-wrapper {
