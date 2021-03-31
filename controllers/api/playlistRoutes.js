@@ -1,12 +1,15 @@
 const router = require("express").Router();
 const { Playlist, User, Song } = require("../../models");
-const SongPlaylist = require("../../models/Song-playlist");
+
 
 router.get("/", async (req, res) => {
     try {
         const playlistResults = await Playlist.findAll({
             include: {
                 model: User,
+            },
+            where: {
+                user_id: req.session.user_id
             }
         });
 
@@ -30,33 +33,6 @@ router.post('/', async (req, res) => {
         res.status(400).json(err);
     }
 });
-
-router.post('/addtoPlaylist', async (req, res) => {
-    try {
-        const addtoPlaylist = await SongPlaylist.create({
-            ...req.body,
-        })
-
-        res.status(200).json(addtoPlaylist);
-    } catch (e) {
-        res.status(400).json(e);
-    }
-})
-
-// router.post('/playlist-test', async (req, res) => {
-//     try {
-//         const playlist = await Playlist.findByPk(2);
-//         const song = await Song.findByPk(6)
-
-//         await playlist.addSong(song)
-//         const playlistSongs = await playlist.getSongs();
-//         res.json(playlistSongs)
-//         console.log('song added')
-
-//     } catch (e) {
-//         res.status(500).json(e);
-//     }
-// })
 
 router.delete('/:id', async (req, res) => {
     try {
