@@ -1,4 +1,5 @@
 const noteSubmitBtn = document.getElementById("noteSubmit");
+const deleteNoteBtn = document.querySelectorAll("noteDelete");
 
 const createNote = async (e) => {
     e.preventDefault();
@@ -31,4 +32,6 @@ const createNote = async (e) => {
 
 if (noteSubmitBtn) {
     noteSubmitBtn.addEventListener("click", createNote);
-}
+};
+
+
