@@ -9,18 +9,21 @@ Notes.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        title:{
+        title: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate:{
+            validate: {
                 len: [4, 20]
             }
-            
-        },
-        description:
-        {
+
+        }, description: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        created_at: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW
         },
         user_id: {
             type: DataTypes.INTEGER,

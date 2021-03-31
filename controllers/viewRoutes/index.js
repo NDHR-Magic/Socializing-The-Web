@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { authCheck } = require("../../middlewares");
-const { User, Song, Tag, Notes, Playlist } = require("../../models");
+const { User, Song, Tag, Notes, Playlist, Friend } = require("../../models");
 const SongPlaylist = require("../../models/Song-playlist");
 
 router.param("userId", async (req, res, next, id) => {
@@ -44,11 +44,30 @@ router.get("/noteForm", authCheck, (req, res) => {
 router.get("/member", authCheck, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id);
-        // Stuff for friends notes later.
+
+        //get friend notes
+        const userFriendNotes = await userData.getFriend();
+
+        const usersNotes = [];
+
+        for (const friend of userFriendNotes) {
+            const notes = await friend.getNotes({
+                order: [
+                    ['created_at', "DESC"]
+                ],
+                limit: 2
+            });
+
+            usersNotes.push(notes);
+        }
+
+        const plainUsersNotes = usersNotes.map(userNote => userNote.map(note => note.get({ plain: true })));
+
+        const actualNotes = plainUsersNotes[0];
+
+        console.log(actualNotes);
 
         const userFriendNum = await userData.countFriend();
-        const userRequests = await userData.getRequesters();
-        const numRequests = await userData.countRequesters();
 
         const user = await userData.get({ plain: true });
 
