@@ -1,4 +1,4 @@
-const deleteNoteBtn = document.getElementById("noteDelete");
+const deleteNoteBtns = document.querySelectorAll(".noteDelete")
 
 
 const deleteNote = async (e) => {
@@ -8,12 +8,14 @@ const deleteNote = async (e) => {
 
     const deleteNoteData = await fetch(`/api/notes/${ID}`, {
         method: "DELETE"
-    });     
-    if (deleteNoteData.status === 200){
+    });
+    if (deleteNoteData.status === 200) {
         window.location.reload()
     }
 };
 
-if (deleteNoteBtn){
-    deleteNoteBtn.addEventListener("click", deleteNote)
+if (deleteNoteBtns) {
+    for (const btn of deleteNoteBtns) {
+        btn.addEventListener("click", deleteNote);
+    }
 }
