@@ -3,19 +3,21 @@
 <link href="/CSS/member.css" rel="stylesheet">
 {{/section}}
 
+
 <div class="container">
     <div class="columns custom-flex my-5">
         <div class="column is-two-thirds bg-555 my-3 pt-3 mx-5">
-            <h1 class="has-text-centered is-size-2 mb-4">Songs</h1>
+            <h1 class="has-text-centered is-size-2 mb-4">{{song.name}}</h1>
             <div class="line mb-3"></div>
             <div class="columns custom-flex">
-                <ul class="songs">
-                    <li>{{#each songs as |song|}}
-                    <li><a href='/songs/{{song.id}}'>{{song.artist}} - {{song.name}}</a></li>
-                    {{/each}}
-                    </li>
+                <button id='addtoPlaylist' data-id={{song.id}}>
+                    Add Song to Playlist</button>
+                <ul id='playlists'>
                 </ul>
             </div>
         </div>
     </div>
 </div>
+
+
+<script src="/JS/addSongs.js"></script>
