@@ -1,6 +1,6 @@
 body, html {
-    background: #111;
-    /* background: linear-gradient(to right, rgb(2, 2, 2), rgb(134, 132, 132));  */
+    /* background: #111; */
+    background: linear-gradient(to bottom right, rgb(2, 2, 2), 75%, rgb(129, 129, 129)); 
     color: white;
     height: 100%;
 }
