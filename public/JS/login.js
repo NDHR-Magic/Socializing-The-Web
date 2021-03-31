@@ -21,7 +21,8 @@ loginButton.on('click', async function(){
     if (response.ok) {
         document.location.replace("/member")
     } else {
-        alert("response is not ok");
+        $('#passwordInput').attr('class', 'input is-danger');
+        $('#invalidPassword').attr('class', 'has-text-danger');
     }
 
     } else {

@@ -95,9 +95,15 @@ router.put('/updatepassword', async (req, res) => {
         .json({ message: 'Incorrect password, please try again' });
       return;
     }
-    await currentUser.update({ password: req.body.newPassword }, { where: {id: req.session.user_id}})
+    console.log('line 98')
+    const updatedUserPassword = await currentUser.update({ password: req.body.newPassword }, { where: {id: req.session.user_id}});
 
-    res.status(200).json({ message: 'Successfully updated password'})
+    console.log(updatedUserPassword);
+
+    if (updatedUserPassword){
+      res.status(200).json({ message: 'Successfully updated password'})
+    }
+
 
 
   } catch (e) {

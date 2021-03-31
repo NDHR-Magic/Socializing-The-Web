@@ -6,10 +6,17 @@ $(document).ready(function() {
         
         const currentPassword = $('#currentPassword').val();
         const newPassword = $('#newPassword').val();
+        const confirmPassword = $('#confirmPassword').val();
         
     
-        if (currentPassword && newPassword) {
+        if (currentPassword && newPassword && confirmPassword) {
             console.log('password update start')
+            if (confirmPassword !== newPassword) {
+                $('#newPassword').attr('class', 'input is-danger');
+                $('#confirmPassword').attr('class', 'input is-danger');
+                $('#passwordMatchError').attr('class', 'has-text-danger');
+                return
+            } 
             //fetch call
             const response = await fetch('api/users/updatepassword', {
                 method: 'PUT',
@@ -24,6 +31,7 @@ $(document).ready(function() {
             console.log('password updated');
             document.location.replace("/userProfile");
         } else {
+            console.log(response);
             console.log("response is not ok");
         }
     
