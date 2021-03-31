@@ -37,15 +37,26 @@ router.get("/:id", async (req, res) => {
 router.post('/addtoPlaylist/:id', async (req, res) => {
     try {
         const song = await Song.findByPk(req.params.id)
-        const playlist = await Playlist.findByPk(3)
+        const playlist = await Playlist.findOne({
+            where: {
+                id: req.body.playlistID
+            }
+        });
 
+        //check if song already in playlist.
+        const isInPlaylist = await playlist.hasSong(song);
+
+        if (isInPlaylist) {
+            res.status(304).json({ message: "Song alrready in playlist" });
+            return;
+        }
 
         await playlist.addSong(song)
         const playlistSongs = await playlist.getSongs();
 
         res.status(200).json(playlistSongs);
     } catch (e) {
-        res.status(400).json(e);
+        res.status(500).json(e);
     }
 })
 
