@@ -33,6 +33,14 @@ Notes.init(
                 key: "id"
             }
         },
+        song_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: "song",
+                key: "id"
+            }
+        }
     },
     {
         sequelize,
