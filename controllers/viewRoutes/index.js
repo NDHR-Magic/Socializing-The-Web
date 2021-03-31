@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { authCheck } = require("../../middlewares");
 const { User, Song, Tag, Notes, Playlist, Friend } = require("../../models");
 const SongPlaylist = require("../../models/Song-playlist");
+const FriendClass = require("../../utils/classes");
 
 router.param("userId", async (req, res, next, id) => {
     const userData = await User.findByPk(id);
@@ -48,24 +49,34 @@ router.get("/member", authCheck, async (req, res) => {
         //get friend notes
         const userFriendNotes = await userData.getFriend();
 
-        const usersNotes = [];
+        const friendList = [];
 
         for (const friend of userFriendNotes) {
-            const notes = await friend.getNotes({
+            // Make friend class
+            const newFriend = new FriendClass(friend.username);
+            // Get the notes for this friend. Order by newest and limit 2 notes.
+            const note = await friend.getNotes({
                 order: [
                     ['created_at', "DESC"]
                 ],
-                limit: 2
+                limit: 1
             });
+            // Get plain version of each note.
+            const plainNote = note[0].get({ plain: true });
+            // Add note to friend note array
+            newFriend.addNote(plainNote);
+            // Add friend to friendList array
 
-            usersNotes.push(notes);
+            friendList.push(newFriend);
         }
 
-        const plainUsersNotes = usersNotes.map(userNote => userNote.map(note => note.get({ plain: true })));
+        //Sort friends list
+        const sortedFriends = friendList.slice().sort((a, b) => b.note.created_at - a.note.created_at);
+        // Get only top 6 of friendList.
+        const friendsToDisplay = sortedFriends.splice(0, 6);
 
-        const actualNotes = plainUsersNotes[0];
-
-        console.log(actualNotes);
+        console.log(friendList);
+        console.log(sortedFriends);
 
         const userFriendNum = await userData.countFriend();
 
@@ -74,6 +85,7 @@ router.get("/member", authCheck, async (req, res) => {
         res.render("memberHome", {
             user,
             userFriendNum,
+            friendsToDisplay,
             requests: req.requests,
             loggedIn: req.session.loggedIn,
             user_id: req.session.user_id
