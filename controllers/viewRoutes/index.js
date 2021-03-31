@@ -304,7 +304,7 @@ router.get("/userProfile", async (req, res) => {
                 id: req.session.user_id
             },
             include: {
-                model: Notes
+                model: Notes,
             }
         });
         const user = userData.get({ plain: true });
