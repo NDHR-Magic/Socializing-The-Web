@@ -90,6 +90,7 @@ router.delete("/friend/:userId", async (req, res) => {
         let friend;
         if (checkFriend) {
             currentUser.removeFriend(friendData);
+            friendData.removeFriend(currentUser);
             friend = friendData.get({ plain: true });
         }
 
