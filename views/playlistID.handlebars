@@ -17,7 +17,8 @@
                     {{else}}
                     <li>No songs found!</li>
                     {{/if}}
-                    <li><button class='deleteBtn'>Delete Playlist</button></li>
+                    <li><button id='deleteBtn' data-id={{playlists.id}}>Delete Playlist</button></li>
                 </ul>
             </div>
         </div>
+        <script src="/JS/deletePlaylist.js"></script>

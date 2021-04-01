@@ -48,14 +48,22 @@ const selectPlayList = async (e) => {
         const p = document.createElement("p");
         p.setAttribute("class", "green");
         p.textContent = "Song added to playlist"
-
         ul.append(p);
+        setTimeout(() => {
+            window.location.replace("/songs");
+        }, 5);
+
+
+
     } else if (addResponse.status === 304) {
         const ul = document.querySelector('#playlists');
 
         const p = document.createElement("p");
         p.setAttribute("class", "red");
         p.textContent = "Song already in playlist"
+        setTimeout(() => {
+            window.location.replace("/songs");
+        }, 8);
 
         ul.append(p);
     } else {
