@@ -6,23 +6,18 @@
 <div class="container">
     <div class="columns custom-flex my-5">
         <div class="column is-two-thirds bg-555 friends my-3 pt-3 mx-5">
-            {{#if user.playlists}}
-            {{#each user.playlists as |playlist|}}
-            <h1 class="has-text-centered is-size-2 mb-4">{{playlist.name}}</h1>
+            <h1 class="has-text-centered is-size-2 mb-4">{{playlists.name}}</h1>
             <div class="line mb-3"></div>
             <div class="columns custom-flex">
                 <ul class="PlaylistID">
-                    {{/each}}
-                    {{else}}
-                    <li>No playlist found!</li>
-                    {{/if}}
-                    {{#if user.song}}
-                    {{#each user.song as |song|}}
+                    {{#if songs}}
+                    {{#each songs as |song|}}
                     <li>{{song.name}}</li>
                     {{/each}}
                     {{else}}
                     <li>No songs found!</li>
                     {{/if}}
+                    <li><button class='deleteBtn'>Delete Playlist</button></li>
                 </ul>
             </div>
         </div>

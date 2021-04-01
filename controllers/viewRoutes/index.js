@@ -221,7 +221,7 @@ router.get("/playlists", authCheck, async (req, res) => {
                 id: req.session.user_id
             },
             include: {
-                model: Playlist
+                model: Playlist,
             }
         });
         const user = userData.get({ plain: true });
@@ -238,21 +238,24 @@ router.get("/playlists", authCheck, async (req, res) => {
 });
 
 router.get("/playlists/:id", authCheck, async (req, res) => {
-    const playlistData = await Playlist.findByPk(req.params.id);
+    try {
+        const playlistData = await Playlist.findByPk(req.params.id);
+        const songsData = await playlistData.getSongs();
 
-    const songsData = await playlistData.getSongs();
+        const songs = songsData.map(song => song.get({ plain: true }));
+        const playlists = playlistData.get({ plain: true });
 
-    const songs = songsData.map(song => song.get({ plain: true }));
-    const playlist = playlistData.get({ plain: true });
-
-    res.render("playlistID", {
-        playlist,
-        songs,
-        requests: req.requests,
-        loggedIn: req.session.loggedIn,
-        user_id: req.session.user_id
-    })
-})
+        res.render("playlistID", {
+            playlists,
+            songs,
+            requests: req.requests,
+            loggedIn: req.session.loggedIn,
+            user_id: req.session.user_id
+        })
+    } catch (e) {
+        res.status(500).json(e);
+    }
+});
 
 router.get("/friendRequests", authCheck, async (req, res) => {
     try {
