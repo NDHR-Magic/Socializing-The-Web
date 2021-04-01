@@ -7,18 +7,20 @@
     <div class="columns custom-flex my-5">
         <div class="column is-two-thirds bg-555 my-3 pt-3 mx-5">
             <h1 class="has-text-centered is-size-2 mb-4">Songs</h1>
-            <h2 class="has-text-centered">Add Songs to your Playlist</h2>
+            <h2 class="has-text-centered mb-2">Add Songs to your Playlist</h2>
             <div class="line mb-3"></div>
 
-            <button><a style="color:black" href='/playlists'>Return to Playlists</a></button>
-
-            <div class="columns custom-flex">
+            <div class="columns custom-flex mt-3">
                 <ul class="songs">
                     <li>{{#each songs as |song|}}
                     <li><a href='/songs/{{song.id}}'>{{song.artist}} - {{song.name}}</a></li>
                     {{/each}}
                     </li>
                 </ul>
+            </div>
+
+            <div class="custom-flex my-3">
+                <button><a style="color:black" href='/playlists'>Return to Playlists</a></button>
             </div>
         </div>
     </div>

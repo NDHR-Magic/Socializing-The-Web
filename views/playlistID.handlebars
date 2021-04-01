@@ -7,8 +7,17 @@
     <div class="columns custom-flex my-5">
         <div class="column is-two-thirds bg-555 friends my-3 pt-3 mx-5">
             <h1 class="has-text-centered is-size-2 mb-4">{{playlists.name}}</h1>
+            {{!-- delete playlist button --}}
+            <div class="custom-flex mb-4">
+                <button id='deleteBtn' data-id={{playlists.id}}>Delete Playlist</button>
+            </div>
+            {{!-- spacing line --}}
             <div class="line mb-3"></div>
-            <button><a style="color:black" href='/songs'>Add Songs</a></button>
+
+            <div class="custom-flex mb-4">
+                <button><a style="color:black" href='/songs'>Add Songs</a></button>
+            </div>
+
             <div class="columns custom-flex">
                 <ul class="PlaylistID">
                     {{#if songs}}
@@ -18,7 +27,6 @@
                     {{else}}
                     <li>No songs found!</li>
                     {{/if}}
-                    <li><button id='deleteBtn' data-id={{playlists.id}}>Delete Playlist</button></li>
                 </ul>
             </div>
         </div>

@@ -10,6 +10,13 @@
         <p class="mx-5 pb-5">{{note.description}}</p>
     </div>
 </main>
+
+<div class="custom-flex mb-3">
+    <audio controls>
+        <source src={{note.song.file_path}} type="audio/mpeg">
+    </audio>
+</div>
+
 <div class="custom-flex">
     <a href="/userProfile" class="button is-primary">Go back</a>
 </div>
