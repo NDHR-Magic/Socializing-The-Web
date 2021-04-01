@@ -12,7 +12,7 @@
                 <ul class="PlaylistID">
                     {{#if songs}}
                     {{#each songs as |song|}}
-                    <li>{{song.name}}</li>
+                    <li><a href='/songs/{{song.id}}'>{{song.name}}</li></a>
                     {{/each}}
                     {{else}}
                     <li>No songs found!</li>
