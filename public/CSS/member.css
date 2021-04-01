@@ -9,6 +9,10 @@ body, html {
     color: black !important;
 }
 
+a :hover {
+    color: lightblue;
+}
+
 .options-wrapper {
     /* background: #555; */
     background:

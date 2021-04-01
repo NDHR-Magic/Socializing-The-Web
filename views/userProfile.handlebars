@@ -38,8 +38,8 @@
             <div class="custom-card-header">
                 <a href="/viewNote/{{note.id}}">
                     <h2 class="is-size-3">Title: {{note.title}}</h2>
-                    <p class="my-2">Created at: {{format_date note.created_at}} {{format_time note.created_at}}</p>
                 </a>
+                <p class="my-2">Created at: {{format_date note.created_at}} {{format_time note.created_at}}</p>
             </div>
             <button data-note_id={{note.id}} class="button is-danger mt-2 noteDelete">Delete Note</button>
             <hr>
