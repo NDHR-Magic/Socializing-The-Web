@@ -45,7 +45,12 @@ router.get("/noteForm", authCheck, (req, res) => {
 // View specific note
 router.get("/viewNote/:id", authCheck, async (req, res) => {
     try {
-        const noteData = await Notes.findByPk(req.params.id);
+        const noteData = await Notes.findOne({
+            where: {
+                id: req.params.id
+            },
+            include: { model: Song }
+        });
 
         if (!noteData) {
             res.status(404).json({ message: "Could not find note" });
