@@ -13,13 +13,46 @@
                     {{#if user.playlists}}
                     {{#each user.playlists as |playlist|}}
                     <li><a href='/playlists/{{playlist.id}}'>{{playlist.name}}</a></li>
-                    <li><button>Delete Playlist</button></li>
                     {{/each}}
                     {{else}}
                     <li>You do not have any playlists yet!</li>
                     {{/if}}
+                    <li><button id='createBtn'>Create
+                            New Playlist</button></li>
+                    <li>
+                        <div id="form" class="container mt-5 hidden">
+                            <div class="field is-horizontal">
+                                <div class="field-label is-normal">
+                                    <label for="playlistTitle" class="label">Title</label>
+                                </div>
+                                <div class="field-body">
+                                    <div class="field">
+                                        <p class="control">
+                                            <input id="playlistTitle" class="input" type="text" placeholder="Name">
+                                            <span class="icon">
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-label">
+
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <button id="playlistSubmit" class="button is-primary hidden">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
-</div>
+
+    <script src='/JS/createNewPlaylist.js'></script>
