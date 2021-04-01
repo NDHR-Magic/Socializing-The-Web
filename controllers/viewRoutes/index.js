@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
         requests: req.requests
     });
 });
-
+// Login page
 router.get("/login", (req, res) => {
     res.render("login", {
         loggedIn: req.session.loggedIn,
@@ -25,7 +25,7 @@ router.get("/login", (req, res) => {
         user_id: req.session.user_id
     });
 });
-
+// Sign up page
 router.get("/signup", (req, res) => {
     res.render("signup", {
         loggedIn: req.session.loggedIn,
@@ -33,7 +33,7 @@ router.get("/signup", (req, res) => {
         user_id: req.session.user_id
     });
 });
-
+// Create note form
 router.get("/noteForm", authCheck, (req, res) => {
     res.render("noteForm", {
         loggedIn: req.session.loggedIn,
@@ -42,6 +42,29 @@ router.get("/noteForm", authCheck, (req, res) => {
     });
 });
 
+// View specific note
+router.get("/viewNote/:id", authCheck, async (req, res) => {
+    try {
+        const noteData = await Notes.findByPk(req.params.id);
+
+        if (!noteData) {
+            res.status(404).json({ message: "Could not find note" });
+        }
+
+        const note = noteData.get({ plain: true });
+
+        res.render("viewNote", {
+            note,
+            loggedIn: true,
+            requests: req.requests,
+            user_id: req.session.user_id
+        });
+    } catch (e) {
+        res.status(500).json(e);
+    }
+})
+
+// member page
 router.get("/member", authCheck, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id);
@@ -92,7 +115,7 @@ router.get("/member", authCheck, async (req, res) => {
         res.status(500).json(e);
     }
 });
-
+// View your friend list
 router.get("/friends", authCheck, async (req, res) => {
     try {
         // change to req.session.user_id after login is finished
@@ -158,7 +181,7 @@ router.get("/profile/:userId", authCheck, async (req, res) => {
         res.status(500).json(e);
     }
 });
-
+// Page for displaying all songs
 router.get("/songs", authCheck, async (req, res) => {
     try {
         const songData = await Song.findAll({
@@ -177,7 +200,7 @@ router.get("/songs", authCheck, async (req, res) => {
         res.status(500).json(e);
     }
 });
-
+// Page for getting a specific song
 router.get("/songs/:id", authCheck, async (req, res) => {
     const getSong = await Song.findByPk(req.params.id);
 
@@ -190,7 +213,7 @@ router.get("/songs/:id", authCheck, async (req, res) => {
         user_id: req.session.user_id
     })
 })
-
+// Page to display playlist
 router.get("/playlists", authCheck, async (req, res) => {
     try {
         const userData = await User.findOne({
@@ -249,7 +272,7 @@ router.get("/friendRequests", authCheck, async (req, res) => {
         res.status(500).json(e);
     }
 });
-
+// chat page
 router.get("/chat", authCheck, async (req, res) => {
     try {
         const userData = await User.findOne({
@@ -308,6 +331,7 @@ router.get("/userProfile", async (req, res) => {
         res.render("userProfile", {
             user,
             loggedIn: req.session.loggedIn,
+            requests: req.requests,
             user_id: req.session.user_id
         })
     } catch (e) {
