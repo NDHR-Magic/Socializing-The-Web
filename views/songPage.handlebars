@@ -4,21 +4,28 @@
 {{/section}}
 
 
-<div class="container">
-    <div class="columns custom-flex my-5">
-        <div class="column is-two-thirds bg-555 my-3 pt-3 mx-5">
+<div class="container mb-0">
+    <div class="columns custom-flex mt-5">
+        <div class="column is-two-thirds bg-555 mt-3 pt-3 mx-5">
             <h1 class="has-text-centered is-size-2 mb-4">{{song.name}}</h1>
             <h2 class="has-text-centered">By: {{song.artist}}</h2>
-            <div class="line mb-3"></div>
+            <div class="line mb-5"></div>
             <div class="columns custom-flex">
                 <audio controls>
                     <source src={{song.file_path}} type="audio/mpeg">
                 </audio>
-                <button id='addtoPlaylist' data-id={{song.id}} class="my-4 py-2">
-                    Add Song to Playlist</button>
-                <ul id='playlists' class="mb-5">
-                </ul>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-0 pt-5">
+    <div class="columns custom-flex">
+        <div class="column is-two-thirds bg-555 pt-3 mx-5 custom-flex">
+            <button id='addtoPlaylist' data-id={{song.id}} class="my-4 py-2">
+                Add Song to Playlist</button>
+            <ul id='playlists' class="mb-5">
+            </ul>
         </div>
     </div>
 </div>
