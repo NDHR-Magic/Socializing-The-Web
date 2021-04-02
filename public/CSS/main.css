@@ -20,12 +20,11 @@ html, body {
     background-blend-mode: screen, difference, lighten;
     background-size: cover;
     background-repeat: no-repeat;
-
     height: 100%;
     width: 100%;
     min-height: 900px;
 }
 
-.background-wrapper h1 {
+.background-wrapper h1, h2 {
     background: black;
 }
