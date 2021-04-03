@@ -47,10 +47,18 @@
             </div>
         </div>
         <div class="column is-three-quarters px-5">
-            <h2 class="has-text-centered is-size-3">Posts (TODO)</h2>
+            <h2 class="has-text-centered is-size-3">Posts</h2>
             <div class="line mb-2"></div>
 
-            <p class="px-2">Testing</p>
+            <div>
+                {{#if notesLength}}
+                {{#each notes as |note|}}
+                {{> note-info}}
+                {{/each}}
+                {{else}}
+                <p class="has-text-centered">They have no posts yet</p>
+                {{/if}}
+            </div>
         </div>
     </div>
 </div>

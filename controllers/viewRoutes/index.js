@@ -153,6 +153,11 @@ router.get("/profile/:userId", authCheck, async (req, res) => {
 
         // Get number of friends for otherUser
         const otherUserFriendNum = await otherUserInfo.countFriend();
+        // Get their notes
+        const notesData = await otherUserInfo.getNotes();
+        const notes = notesData.map(note => note.get({ plain: true }));
+        // Save notes arr length
+        const notesLength = notes.length;
 
         // Check if you have a pending friend request for them / from them.
         const userRequested = await otherUserInfo.hasRequester(userInfo);
@@ -177,6 +182,8 @@ router.get("/profile/:userId", authCheck, async (req, res) => {
             areFriends,
             otherUserFriendNum,
             sameUser,
+            notes,
+            notesLength,
             requested,
             requests: req.requests,
             loggedIn: req.session.loggedIn,
