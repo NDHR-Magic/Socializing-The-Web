@@ -24,6 +24,8 @@ NAthan Peek, Raquel Diaz, Hader Cortez, David Sanchez
 ## License Information
 ### No license
 
+![front page](public/images/Front_page.png)
+
 ## Questions
 If you have further questions you can contact us at nmp14fsu@gmail.com (insert others).
 
