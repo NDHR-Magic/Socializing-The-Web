@@ -13,6 +13,8 @@
   - [Questions](#questions)
 
 ## Description
+Deployed App: https://lychee-sundae-06249.herokuapp.com/
+
 #Moods is a social media based platform focused on sharing music and your thoughts on certain songs. The app will feature the ability to listen to music and add songs to playlists. You will also be able to write note entries almost like diary entries or posts on social media. The notes will be able to be linked to a song of your choice if you choose to so when you later look at notes, you can listen to that song again easily. You can add friends and view their posts as well as chat (direct messages currently in developement).
 
 Technologies used:
