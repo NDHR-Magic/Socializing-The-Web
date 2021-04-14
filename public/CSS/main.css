@@ -15,7 +15,7 @@ html, body {
     background: 
       linear-gradient(teal 0%, 35%, blue 90%), 
       linear-gradient(to right, teal 0%, 40%, purple 90%), 
-      url("/images/piano.png");
+      url("/images/piano-min.png");
     background-position: center;
     background-blend-mode: screen, difference, lighten;
     background-size: cover;
