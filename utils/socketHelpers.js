@@ -1,6 +1,7 @@
 const users = [];
 
 exports = module.exports = function (io) {
+    //connection
     io.on('connection', function (socket) {
         socket.on('user connect', (user) => {
             // See if user is connected
