@@ -4,6 +4,7 @@ const session = require("express-session");
 const path = require("path");
 const sequelize = require("./config/connection.js");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const compression = require('compression');
 const helpers = require("./utils/helpers");
 const controllers = require("./controllers");
 const middleware = require("./middlewares");
@@ -12,6 +13,20 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 const hbs = exphs.create({ helpers });
 
+// Compression
+app.use(compression({ filter: shouldCompress, level: -1 }))
+
+function shouldCompress(req, res) {
+    if (req.headers['x-no-compression']) {
+        // don't compress responses with this request header
+        return false
+    }
+
+    // fallback to standard filter function
+    return compression.filter(req, res)
+}
+
+// HTTP socket.io
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const socketHelpers = require("./utils/socketHelpers")(io);
