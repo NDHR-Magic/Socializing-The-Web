@@ -1,9 +1,9 @@
-$(document).ready(function() {
+$(document).ready(function () {
     const logoutButton = $("#logoutButton")
 
-    logoutButton.on("click", async function(){
+    logoutButton.on("click", async function () {
 
-        const response = await fetch('api/users/logout', {
+        const response = await fetch('/api/users/logout', {
             method: 'POST'
         });
 
